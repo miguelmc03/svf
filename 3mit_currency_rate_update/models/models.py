@@ -11,6 +11,7 @@ from odoo import api, fields, models, tools, _
 _logger = logging.getLogger(__name__)
 
 
+
 def rate_retrieve_cop():
     WSDL_URL = 'https://www.superfinanciera.gov.co/SuperfinancieraWebServiceTRM/TCRMServicesWebService/TCRMServicesWebService?WSDL'
     date = time.strftime('%Y-%m-%d')

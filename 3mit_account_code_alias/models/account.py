@@ -8,6 +8,7 @@ from odoo.osv import expression
 # Accounts
 #----------------------------------------------------------
 
+
 class AccountAccount(models.Model):
     _inherit = "account.account"
 
