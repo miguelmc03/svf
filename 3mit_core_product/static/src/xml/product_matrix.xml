@@ -1,0 +1,35 @@
+<template>
+
+    <t t-extend="product_matrix.matrix">
+        <t t-jquery = "tbody" t-operation = "inner">
+            <tr t-foreach="rows" t-as="row">
+                    <t t-foreach="row" t-as="cell">
+                        <td t-if="cell.name" class="text-left">
+                            <strong t-esc="cell.name"/>
+                            <t t-call="product_matrix.extra_price">
+                                <t t-set="price" t-value="cell.price"/>
+                            </t>
+                        </td>
+                        <td t-else="">
+                            <div t-if="cell.is_possible_combination" class="input-group">
+                                <t t-if="cell.name_2[0] != 'C'">
+                                    <input type="number"
+                                      class="o_matrix_input"
+                                      t-att-ptav_ids="cell.ptav_ids"
+                                      t-att-value="cell.qty" t-att-name_2="cell.name_2"/>
+                                </t>
+                                <t t-if="cell.name_2[0] == 'C'">
+                                    <input type="number"
+                                      class="o_matrix_input"
+                                      t-att-ptav_ids="cell.ptav_ids"
+                                      t-att-value="cell.qty"
+                                      readonly="1" t-att-name_2="cell.name_2"/>
+                                </t>
+                            </div>
+                            <span t-else="" class="o_matrix_cell o_matrix_text_muted o_matrix_nocontent_container"> Not available </span>
+                        </td>
+                    </t>
+                </tr>
+        </t>
+     </t>
+</template>

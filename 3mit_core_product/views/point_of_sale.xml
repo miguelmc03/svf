@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="widget_edit_variante" inherit_id="web.assets_backend">
+            <xpath expr="script[last()]" position="after">
+                <script type="text/javascript" src="/3mit_core_product/static/js/screens.js"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>
