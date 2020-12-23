@@ -66,7 +66,6 @@ SectionAndNoteFieldOne2Many.include({
             buttons: [
                 {text: _t('Confirm'), classes: 'btn-primary', close: true, click: function (result) {
                     var $inputs = this.$('.o_matrix_input');
-                    console.log($inputs,'$inputs')
 
                     for (var i = 0; i < $inputs.length; i++) {
                         if ($inputs[i].value > 0){
