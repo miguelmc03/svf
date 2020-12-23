@@ -39,6 +39,7 @@ class CoreProduct(models.Model):
                     'value_ids': move_obj.value_ids
                 }),
             ]})
+            vals_list.update({'product_add_mode': 'matrix'})
         res = super(CoreProduct, self).create(vals_list)
         return res
 
