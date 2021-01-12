@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_3mit_changes_crm_sale_simple_order,3mit_changes_crm.3mit_changes_crm,model_sale_simple_order,base.group_user,1,1,1,1
+access_3mit_changes_crm_sale_simple_order_line,3mit_changes_crm.3mit_changes_crm_order_line,model_sale_simple_order_line,base.group_user,1,1,1,1
+access_3mit_changes_crm_wizard_customer_request,3mit_changes_crm.3mit_changes_crm_wizard_customer_request,model_wizard_customer_request,,1,1,1,1

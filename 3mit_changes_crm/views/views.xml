@@ -1,0 +1,71 @@
+<odoo>
+  <data>
+    <record id="crm_lead2opportunity_partner_inherit" model="ir.ui.view">
+        <field name="name">crm inherit</field>
+        <field name="model">crm.lead2opportunity.partner</field>
+        <field name="inherit_id" ref="crm.view_crm_lead2opportunity_partner"/>
+        <field name="arch" type="xml">
+          <field name="action" position='attributes'>
+                <attribute name="invisible">1</attribute>
+          </field>
+          <field name="action" position='before'>
+                <field name="actionb" widget="radio"/>
+          </field>
+        </field>
+     </record>
+      <record id="crm_lead_form_inherit" model="ir.ui.view">
+        <field name="name">crm lead form inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[2]/field[@name='partner_id']" position='attributes'>
+                <attribute name="attrs">{'invisible':[('partner_id', '=', False),('record_customer', '=', False)],'required':[('record_customer','=','True')]}</attribute>
+            </xpath>
+            <field name="email_from" position='attributes'>
+                <attribute name="required">1</attribute>
+            </field>
+            <xpath expr="//group/group[2]/field[@name='partner_id']" position='after'>
+                <field name="partner_name"/>
+                <field name="contact_name"/>
+                <field name="record_customer" invisible="1"/>
+                <field name="record_cliente" invisible="1"/>
+            </xpath>
+        </field>
+     </record>
+      <record id="crm_lead_2_form_inherit" model="ir.ui.view">
+        <field name="name">crm 2 lead form inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <button name="action_sale_quotations_new" position="attributes">
+                <attribute name="attrs">{'invisible':[('record_customer', '=', False)]}</attribute>
+            </button>
+        </field>
+     </record>
+    <record id="crm_case_form_view_oppor" model="ir.ui.view">
+            <field name="name">crm.lead.oppor.inherited.crm</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">
+                    <button string="Presupuesto Previsto" name="action_simple_new_quotation_2" type="object" class="oe_highlight"
+                        attrs="{'invisible': [('record_customer', '=', True)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">
+                    <button string="Solicitar Creación Cliente" name="%(action_customer_request)d" type="action" class="oe_highlight"
+                        attrs="{'invisible':[('record_cliente', '=', False)]}"/>
+                </xpath>
+            </field>
+    </record>
+      <record id="crm_stage_form_inherit" model="ir.ui.view">
+        <field name="name">crm stage inherit</field>
+        <field name="model">crm.stage</field>
+        <field name="inherit_id" ref="crm.crm_stage_form"/>
+        <field name="arch" type="xml">
+            <field name="is_won" position='before'>
+                <field name="crear_cliente" required="1"/>
+          </field>
+        </field>
+     </record>
+  </data>
+</odoo>

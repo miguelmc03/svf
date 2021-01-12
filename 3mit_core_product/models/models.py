@@ -39,7 +39,6 @@ class CoreProduct(models.Model):
                     'value_ids': move_obj.value_ids
                 }),
             ]})
-            vals_list.update({'product_add_mode': 'matrix'})
         res = super(CoreProduct, self).create(vals_list)
         return res
 
@@ -116,3 +115,34 @@ class SaleOrderInherit(models.Model):
                 raise Warning(_('Falta el Core del producto'))
         res = super(SaleOrderInherit, self).create(vals)
         return res
+
+class PurchaseOrderInherit(models.Model):
+    _inherit = "purchase.order"
+
+    @api.model
+    def create(self, vals):
+        number_variants = 1
+        last_product_id = None
+        quantity = 0
+        if vals.get('order_line'):
+            for line in vals.get('order_line'):
+                if number_variants == 1:
+                    id = line[2]['product_template_id']
+                    product = self.env['product.template'].search([('id', '=', id)])
+                    if product.checking_core == 'si':
+                        number_variants = product.product_variant_count
+                        last_product_id = line[2]['product_id']
+                        quantity = line[2]['product_uom_qty']
+                else:
+                    number_variants = number_variants - 1
+                    id = line[2]['product_template_id']
+                    product = self.env['product.template'].search([('id', '=', id)])
+                    if not last_product_id in product.product_variant_ids.ids:
+                        raise Warning(_('Falta el core del producto'))
+                    if line[2]['product_uom_qty'] != quantity:
+                        raise Warning(_('La cantidad de los cores no es igual a la del producto'))
+            if number_variants != 1:
+                raise Warning(_('Falta el Core del producto'))
+        res = super(PurchaseOrderInherit, self).create(vals)
+        return res
+

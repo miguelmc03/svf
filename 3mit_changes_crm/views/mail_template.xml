@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="email_template_slip" model="mail.template">
+        <field name="name">Sale order receipt</field>
+        <field name="model_id" ref="3mit_changes_crm.model_sale_simple_order"/>
+        <field name="email_from" >${(object.company_id.email or 'noreply@' + object.company_id.name + '.com')|safe}</field>
+        <field name="email_to" >${object.email|safe}</field>
+        <field name="lang">${object.company_id.lang}</field>
+        <field name="report_template" ref="3mit_changes_crm.action_sale_simple_order_reporte"/>
+        <field name="subject">${object.name}</field>
+        <field name="body_html">
+            <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                    <p>Buen Día, ${object.partner_name or object.partner_id}.
+                    <br/><br/>
+                    El presente es para hacerle llegar el presupuesto solicitado con fecha ${object.date_order}
+                    <br/><br/>
+                    Estoy a la Orden.
+                    <br/><br/>
+                    Atentamente.-</p>
+                </div>
+            ]]>
+        </field>
+    </record>
+    <record id="email_template_slip_1" model="mail.template">
+        <field name="name">Create Customer request</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="email_from" >${(object.company_id.email or 'noreply@' + object.company_id.name + '.com')|safe}</field>
+        <field name="lang">${object.company_id.lang}</field>
+        <field name="subject">Registrar cliente ${object.partner_name or 'S/N'}</field>
+        <field name="body_html">
+            <![CDATA[
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                    <p>Buen Día, Departamento de Finanzas.
+                    <br/><br/>
+                    El presente es para Solicitar la creación de un cliente, adjunto la información de la oportunidad:<br/>
+                    Nombre de la compañia: ${object.partner_name or 'S/N'}<br/>
+                    Dirección: ${object.street or ' '}<br/>
+                    Correo : ${object.email_from or ' '}<br/>
+                    Nombre del contacto: ${object.contact_name or ' '}<br/>
+                    Puesto de trabajo: ${object.function or ' '}<br/>
+                    Telefono : ${object.mobile or ' '}<br/>
+                    <br/><br/>
+                    Estoy a la Orden.
+                    <br/><br/>
+                    Atentamente.-</p>
+                </div>
+            ]]>
+        </field>
+    </record>
+
+
+</odoo>
