@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="3mit_service_machinery_1" model="service.machinery">
+            <field name="tipo_servicio">1A-CONTINUOUS OPERATION, UNRESTRICTED</field>
+        </record>
+
+        <record id="3mit_service_machinery_2" model="service.machinery">
+            <field name="tipo_servicio">1B-CONT. OPERATION, VARIABLE, HIGH LOAD</field>
+        </record>
+
+        <record id="3mit_service_machinery_3" model="service.machinery">
+            <field name="tipo_servicio">1D-CONT. OPERATION, VARIABLE, MEDIUM LOAD</field>
+        </record>
+
+        <record id="3mit_service_machinery_4" model="service.machinery">
+            <field name="tipo_servicio">1DS-CONTINUOUS OPERATION, VARIABLE, LOW LOAD</field>
+        </record>
+
+        <record id="3mit_service_machinery_5" model="service.machinery">
+            <field name="tipo_servicio">2A-CONTINUOUS OPERATION, UNRESTRICTED</field>
+        </record>
+
+        <record id="3mit_service_machinery_6" model="service.machinery">
+            <field name="tipo_servicio">3A-HEAVY DUTY SERVICE, UNRESTRICTED</field>
+        </record>
+
+        <record id="3mit_service_machinery_7" model="service.machinery">
+            <field name="tipo_servicio">3A-Heavy duty, unrestricted, ICXN</field>
+        </record>
+
+        <record id="3mit_service_machinery_8" model="service.machinery">
+            <field name="tipo_servicio">3B-CONTINUOUS OPERATION, VARIABLE LOAD</field>
+        </record>
+
+        <record id="3mit_service_machinery_9" model="service.machinery">
+            <field name="tipo_servicio">3C-INTERMITTENT SERVICE, ICXN</field>
+        </record>
+
+        <record id="3mit_service_machinery_10" model="service.machinery">
+            <field name="tipo_servicio">3D-EMERGENCY SERVICE, FUEL STOP POWER, IFN</field>
+        </record>
+
+        <record id="3mit_service_machinery_11" model="service.machinery">
+            <field name="tipo_servicio">4A-CONTINUOUS OPERATION, UNRESTRICTED</field>
+        </record>
+
+        <record id="3mit_service_machinery_12" model="service.machinery">
+            <field name="tipo_servicio">4B-CONTINUOUS OPERATION, VARIABLE</field>
+        </record>
+
+        <record id="3mit_service_machinery_13" model="service.machinery">
+            <field name="tipo_servicio">4C-SHORT-TIME OPERATION</field>
+        </record>
+
+        <record id="3mit_service_machinery_14" model="service.machinery">
+            <field name="tipo_servicio">4D-CONTINUOUS OPERATION, VARIABLE</field>
+        </record>
+
+        <record id="3mit_service_machinery_15" model="service.machinery">
+            <field name="tipo_servicio">5A-CONTINUOUS OPERATION, UNRESTRICTED</field>
+        </record>
+
+        <record id="3mit_service_machinery_16" model="service.machinery">
+            <field name="tipo_servicio">AMELS 5B-CONTINUOUS OPERATION, VARIABLE</field>
+        </record>
+
+        <record id="3mit_service_machinery_17" model="service.machinery">
+            <field name="tipo_servicio">5C-SHORT-TIME OPERATION</field>
+        </record>
+
+        <record id="3mit_service_machinery_18" model="service.machinery">
+            <field name="tipo_servicio">99-NOT RELEVANT</field>
+        </record>
+    </data>
+</odoo>

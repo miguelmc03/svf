@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vista de formulario para clientes no registrados -->
+        <record id="unregistered_clients_form" model="ir.ui.view">
+            <field name="name">unregistered.clients.form</field>
+            <field name="model">unregistered.clients</field>
+            <field name="arch" type="xml">
+                <form string="Datos del cliente a registrar">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name_new_client"
+                                       placeholder="Ingrese el nombre"
+                                />
+                                <field name="surname_new_client"
+                                       placeholder="Ingrese el apellido"
+                                />
+                            </group>
+
+                            <group>
+                               <field name="vat_new_client"
+                                       placeholder="Ingrese el NIF"
+                                />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vista de lista de clientes no registrados -->
+        <record id="unregistered_clients_tree" model="ir.ui.view">
+            <field name="name">unregistered.clients.tree</field>
+            <field name="model">unregistered.clients</field>
+            <field name="arch" type="xml">
+                <tree string="Lista de clientes no registrados">
+                    <field name="name_new_client" string="Nombre" />
+                    <field name="surname_new_client" string="Apellido" />
+                    <field name="vat_new_client" string="NIF" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
