@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.simple.order</field>
+        <field name="arch" type="xml">
+          <form string="Presupuesto" class="o_sale_order">
+            <header>
+                <field name="authorized_transaction_ids" invisible="1"/>
+                <button name="action_quotation_send" string="Enviar por correo" type="object" states="draft" class="btn-primary"/>
+                <button name="action_quotation_send" string="Enviar por correo" type="object" states="sent,sale"/>
+                <button name="action_cancel" states="draft,sent,sale" type="object" string="Cancelar"/>
+                <button name="action_draft" states="cancel" type="object" string="Volver a Presupuesto"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,sent,cancel"/>
+            </header>
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="preview_sale_order"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-globe icon">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Cliente</span>
+                            <span class="o_stat_text">Previsualizar</span>
+                        </div>
+                    </button>
+                    <button name="action_view_invoice"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                        <field name="invoice_count" widget="statinfo" string="Facturas"/>
+                    </button>
+                </div>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="opportunity_id" help="Log in the chatter from which opportunity the order originates" invisible="1" groups="base.group_no_one"/>
+                        <field name="partner_id" string="Cliente" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}' attrs="{'invisible': [('partner_id', '=', False)]}"/>
+                        <field name="partner_name" string="Nombre de la compañía" attrs="{'invisible': [('partner_id', '=', True)]}"/>
+                        <field name="street" string="Dirección" attrs="{'invisible': [('partner_id', '=', True)]}"/>
+                        <field name="partner_invoice_id" string="Factura Cliente" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options='{"always_reload": True}' attrs="{'invisible': [('partner_id', '=', False)]}"/>
+                        <field name="partner_shipping_id" string="Dirección de Cliente" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" options='{"always_reload": True}' attrs="{'invisible': [('partner_id', '=', False)]}"/>
+                        <field name="email" string="Correo Electrónico" attrs="{'invisible': [('partner_id', '=', True)]}"/>
+                    </group>
+                    <group>
+                        <field name="validity_date" string="Fecha expiración" attrs="{'invisible': [('state', 'in', ['sale', 'done'])]}"/>
+                        <div class="o_td_label" groups="base.group_no_one" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}">
+                            <label for="date_order" string="Fecha Presupuesto"/>
+                        </div>
+                        <field name="date_order" nolabel="1" groups="base.group_no_one" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
+                        <div class="o_td_label" attrs="{'invisible': [('state', 'in', ['draft', 'sent'])]}">
+                            <label for="date_order" string="Fecha de Orden"/>
+                        </div>
+                        <field name="date_order" attrs="{'required': [('state', 'in', ['sale', 'done'])], 'invisible': [('state', 'in', ['draft', 'sent'])]}" nolabel="1"/>
+                        <field name="pricelist_id" string="Lista de precios" groups="product.group_product_pricelist" options="{'no_open':True,'no_create': True}"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="payment_term_id" string="Terminos de Pago" options="{'no_open':True,'no_create': True}"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Lineas de orden" name="order_lines">
+                        <field
+                            name="order_line"
+                            widget="section_and_note_one2many"
+                            mode="tree,kanban"
+                            attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                        >
+                            <form>
+                                <field name="display_type" invisible="1"/>
+                                <!--
+                                    We need the sequence field to be here for new lines to be added at the correct position.
+                                    TODO: at some point we want to fix this in the framework so that an invisible field is not required.
+                                -->
+                                <field name="sequence" invisible="1"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <group>
+                                    <group attrs="{'invisible': [('display_type', '!=', False)]}">
+                                        <field name="product_updatable" invisible="1"/>
+                                        <field name="product_id" string="Producto"
+                                            domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                            context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+                                            attrs="{
+                                                'readonly': [('product_updatable', '=', False)],
+                                                'required': [('display_type', '=', False)],
+                                            }"
+                                            force_save="1"
+                                            widget="many2one_barcode"
+                                           />
+                                        <field name="invoice_status" invisible="1"/>
+                                        <field name="qty_to_invoice" invisible="1"/>
+                                        <field name="qty_delivered_manual" invisible="1"/>
+                                        <field name="qty_delivered_method" invisible="1"/>
+                                        <field name="price_total" invisible="1"/>
+                                        <field name="price_tax" invisible="1"/>
+                                        <field name="price_subtotal" invisible="1"/>
+                                        <label for="product_uom_qty" string="Cantidad"/>
+                                        <div class="o_row" name="ordered_qty">
+                                            <field
+                                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'uom_qty_change':True, 'company_id': parent.company_id}"
+                                                name="product_uom_qty"/>
+                                            <field
+                                                name="product_uom"
+                                                string="Unidad de producto"
+                                                force_save="1"
+                                                groups="uom.group_uom"
+                                                class="oe_no_button"
+                                                attrs="{
+                                                    'readonly': [('state', 'in', ('sale', 'done', 'cancel'))],
+                                                    'required': [('display_type', '=', False)],
+                                                }"
+                                            />
+                                        </div>
+                                        <label for="qty_delivered" string="Delivered" attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"/>
+                                        <div name="delivered_qty" attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}">
+                                            <field name="qty_delivered"  string="Cantidad" attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"/>
+                                        </div>
+                                        <label for="qty_invoiced" string="Invoiced" attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"/>
+                                        <div name="invoiced_qty" attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}">
+                                            <field name="qty_invoiced" string="Cantidad a facturar" attrs="{'invisible': [('parent.state', 'not in', ['sale', 'done'])]}"/>
+                                        </div>
+                                        <field name="price_unit" string="Precio por unidad"/>
+                                        <field name="tax_id" string="Impuesto" widget="many2many_tags" options="{'no_create': True}" context="{'search_view_ref': 'account.account_tax_view_search'}" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                                            attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                                        <label for="discount" groups="product.group_discount_per_so_line"/>
+                                        <div name="discount" string="Descuento" groups="product.group_discount_per_so_line">
+                                            <field name="discount" class="oe_inline"/> %%
+                                        </div>
+                                        <!--
+                                            We need the sequence field to be here
+                                            because we want to be able to overwrite the default sequence value in the JS
+                                            in order for new lines to be added at the correct position.
+                                            NOTE: at some point we want to fix this in the framework so that an invisible field is not required.
+                                        -->
+                                        <field name="sequence" invisible="1"/>
+                                    </group>
+                                    <group attrs="{'invisible': [('display_type', '!=', False)]}">
+                                        <label for="customer_lead"/>
+                                        <div name="lead">
+                                            <field name="customer_lead" class="oe_inline"/> days
+                                        </div>
+                                        <field name="analytic_tag_ids" widget="many2many_tags" groups="analytic.group_analytic_tags" options="{'color_field': 'color'}" domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"/>
+                                    </group>
+                                </group>
+                                <label for="name" string="Descripción" attrs="{'invisible': [('display_type', '!=', False)]}"/>
+                                <label for="name" string="Section Name (eg. Products, Services)" attrs="{'invisible': [('display_type', '!=', 'line_section')]}"/>
+                                <label for="name" string="Note" attrs="{'invisible': [('display_type', '!=', 'line_note')]}"/>
+                                <field name="name"/>
+                                <div name="invoice_lines" groups="base.group_no_one" attrs="{'invisible': [('display_type', '!=', False)]}">
+                                    <label for="invoice_lines"/>
+                                    <field name="invoice_lines"/>
+                                </div>
+                                <field name="state" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                            </form>
+                            <tree
+                                string="Lineas"
+                                editable="bottom"
+                                decoration-info="(not display_type and invoice_status == 'to invoice')"
+                            >
+                                <control>
+                                    <create name="add_product_control" string="Add a product"/>
+                                    <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                    <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                </control>
+
+                                <field name="sequence" widget="handle" />
+                                <!-- We do not display the type because we don't want the user to be bothered with that information if he has no section or note. -->
+                                <field name="display_type" invisible="1"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+
+                                <field name="product_updatable" invisible="1"/>
+                                <field
+                                    name="product_id" string="Producto"
+                                    attrs="{
+                                        'readonly': [('product_updatable', '=', False)],
+                                        'required': [('display_type', '=', False)],
+                                    }"
+                                    options="{'no_open': True}"
+                                    force_save="1"
+                                    context="{
+                                        'partner_id': parent.partner_id,
+                                        'quantity': product_uom_qty,
+                                        'pricelist': parent.pricelist_id,
+                                        'uom':product_uom,
+                                        'company_id': parent.company_id,
+                                        'default_lst_price': price_unit,
+                                        'default_description_sale': name
+                                    }"
+                                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                    widget="product_configurator"
+                                />
+                                <field name="product_template_id"
+                                  string="Product"
+                                  invisible="1"
+                                  attrs="{
+                                      'readonly': [('product_updatable', '=', False)],
+                                      'required': [('display_type', '=', False)],
+                                  }"
+                                  options="{'no_open': True}"
+                                  context="{
+                                      'partner_id': parent.partner_id,
+                                      'quantity': product_uom_qty,
+                                      'pricelist': parent.pricelist_id,
+                                      'uom':product_uom,
+                                      'company_id': parent.company_id,
+                                      'default_lst_price': price_unit,
+                                      'default_description_sale': name
+                                  }"
+                                  domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                  widget="product_configurator"/>
+                                <field name="name" string="Descripción" widget="section_and_note_text" optional="show"/>
+                                <field
+                                    name="analytic_tag_ids"
+                                    optional="hide"
+                                    groups="analytic.group_analytic_tags"
+                                    widget="many2many_tags"
+                                    options="{'color_field': 'color'}"
+                                    domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                />
+                                <field
+                                    name="product_uom_qty" string="Cantidad"
+                                    context="{
+                                        'partner_id': parent.partner_id,
+                                        'quantity': product_uom_qty,
+                                        'pricelist': parent.pricelist_id,
+                                        'uom': product_uom,
+                                        'company_id': parent.company_id
+                                    }"
+                                />
+                                <field
+                                    name="qty_delivered"
+                                    string="Delivered"
+                                    attrs="{
+                                        'column_invisible': [('parent.state', 'not in', ['sale', 'done'])],
+                                        'readonly': [('qty_delivered_method', '!=', 'manual')]
+                                    }"
+                                    optional="show"
+                                />
+                                <field name="qty_delivered_manual" invisible="1"/>
+                                <field name="qty_delivered_method" invisible="1"/>
+                                <field
+                                    name="qty_invoiced"
+                                    string="Invoiced"
+                                    attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+                                    optional="show"
+                                />
+                                <field name="qty_to_invoice" invisible="1"/>
+                                <field
+                                    name="product_uom"
+                                    force_save="1"
+                                    string="Unidad de producto"
+                                    attrs="{
+                                        'readonly': [('state', 'in', ('sale','done', 'cancel'))],
+                                        'required': [('display_type', '=', False)],
+                                    }"
+                                    context="{'company_id': parent.company_id}"
+                                    groups="uom.group_uom"
+                                    options='{"no_open": True}'
+                                    optional="show"
+                                />
+                                <field
+                                    name="customer_lead"
+                                    optional="hide"
+                                    attrs="{'readonly': [('parent.state', 'not in', ['draft', 'sent'])]}"
+                                />
+                                <field
+                                    name="price_unit" string="Precio por unidad"
+                                    attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
+                                />
+                                <field
+                                    name="tax_id" string="Impuesto"
+                                    widget="many2many_tags"
+                                    options="{'no_create': True}"
+                                    domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                                    attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
+                                    optional="show"
+                                />
+                                <field name="discount" string="Desc.%" groups="product.group_discount_per_so_line" optional="show"/>
+                                <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                <field name="price_total" widget="monetary" groups="account.group_show_line_subtotals_tax_included"/>
+                                <field name="state" invisible="1"/>
+                                <field name="invoice_status" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="price_tax" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                            </tree>
+                            <kanban class="o_kanban_mobile">
+                                <field name="name" string="Descripción"/>
+                                <field name="product_id" string="Producto"/>
+                                <field name="product_uom_qty" string="Cantidad"/>
+                                <field name="product_uom" groups="uom.group_uom" string="Unidad de Producto"/>
+                                <field name="price_subtotal" string="Precio Sub-total"/>
+                                <field name="price_tax" invisible="1"/>
+                                <field name="price_total" invisible="1"/>
+                                <field name="price_unit" string="Precio por Unidad"/>
+                                <field name="display_type"/>
+                                <field name="tax_id" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div t-attf-class="oe_kanban_card oe_kanban_global_click {{ record.display_type.raw_value ? 'o_is_' + record.display_type.raw_value : '' }}">
+                                            <t t-if="!record.display_type.raw_value">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <strong>
+                                                            <span>
+                                                                <t t-esc="record.product_id.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <strong>
+                                                            <span class="float-right text-right">
+                                                                <t t-esc="record.price_subtotal.value"/>
+                                                            </span>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 text-muted">
+                                                        <span>
+                                                            Quantity:
+                                                            <t t-esc="record.product_uom_qty.value"/>
+                                                            <t t-esc="record.product_uom.value"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 text-muted">
+                                                        <span>
+                                                            Unit Price:
+                                                            <t t-esc="record.price_unit.value"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                            <t t-if="record.display_type.raw_value === 'line_section' || record.display_type.raw_value === 'line_note'">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <span>
+                                                            <t t-esc="record.name.value"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                        <group name="note_group" col="6">
+                            <group colspan="4">
+                                <field name="note" nolabel="1" placeholder="Terms and conditions..."/>
+                            </group>
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                <field name="amount_untaxed" string="Base Imponible" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                <field name="amount_tax" string="Impuestos" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="amount_total" />
+                                </div>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <div class="oe_clear"/>
+                        </group>
+                    </page>
+                    <page string="Other Info" name="other_information">
+                        <group>
+                            <group name="sales_person" string="Sales">
+                                <field name="user_id"/>
+                                <field name="team_id" kanban_view_ref="%(sales_team.crm_team_view_kanban)s" options="{'no_create': True}"/>
+                                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                                <field name="require_signature" groups="base.group_no_one"/>
+                                <field name="require_payment" groups="base.group_no_one"/>
+                                <field name="reference" readonly="1" attrs="{'invisible': [('reference', '=', False)]}"/>
+                                <field name="client_order_ref"/>
+                            </group>
+                            <group name="sale_info" string="Invoicing">
+                                <field name="fiscal_position_id" options="{'no_create': True}"/>
+                                <field name="analytic_account_id" context="{'default_partner_id':partner_invoice_id, 'default_name':name}" attrs="{'readonly': [('invoice_count','!=',0),('state','=','sale')]}" groups="analytic.group_analytic_accounting" force_save="1"/>
+                                <field name="invoice_status" states="sale,done" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group name="sale_shipping">
+                                <label for="commitment_date" string="Delivery Date"/>
+                                <div class="o_row">
+                                    <field name="commitment_date"/> <span class="text-muted">Expected: <field name="expected_date" widget="date"/></span>
+                                </div>
+                            </group>
+                            <group string="Reporting" name="sale_reporting" groups="base.group_no_one">
+                                <group name="technical" colspan="2" class="mb-0">
+                                    <field name="origin"/>
+                                    <field name="opportunity_id" help="Log in the chatter from which opportunity the order originates" groups="base.group_no_one"/>
+                                </group>
+                                <group name="utm_link" colspan="2" class="mt-0">
+                                    <field name="campaign_id"/>
+                                    <field name="medium_id"/>
+                                    <field name="source_id"/>
+                                </group>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+          </form>
+        </field>
+    </record>
+     <record id="view_order_tree_new" model="ir.ui.view">
+        <field name="name">Presupuesto</field>
+        <field name="model">sale.simple.order</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <tree string="Presupuestos Previstos" decoration-muted="state=='cancel'" multi_edit="1">
+                <field name="message_needaction" invisible="1"/>
+                <field name="name" string="Número de Presupuesto" readonly="1"/>
+                <field name="date_order" string="Fecha presupuesto"/>
+                <field name="partner_id"  string="Cliente" readonly="1"/>
+                <field name="partner_name"  string="Cliente" readonly="1"/>
+                <field name="team_id" optional="hide"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="tag_ids" optional="hide" widget="many2many_tags"/>
+                <field name="state"/>
+                <field name="activity_exception_decoration" widget="activity_exception"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_sale_order_graph">
+        <field name="name">sale.order.graph</field>
+        <field name="model">sale.simple.order</field>
+        <field name="arch" type="xml">
+            <graph string="Presupuesto">
+                <field name="partner_id"/>
+                <field name="amount_total" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="sale_action_quotations_new" model="ir.actions.act_window">
+        <field name="name">Presupuestos</field>
+        <field name="res_model">sale.simple.order</field>
+        <field name="view_mode">form,tree,graph</field>
+        <field name="domain">[('opportunity_id', '=', active_id)]</field>
+        <field name="context">{'search_default_opportunity_id': active_id, 'default_opportunity_id': active_id}</field>
+    </record>
+     <record id="action_orders" model="ir.actions.act_window">
+        <field name="name">Presupuesto</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.simple.order</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="context">{}</field>
+        <field name="domain">[('state', 'in', ('draft', 'sent', 'cancel'))]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Crea un nuevo presupuesto el primer paso a un venta!
+            </p>
+        </field>
+    </record>
+     <record id="crm.crm_lead_opportunities" model="ir.actions.act_window">
+        <field name="context">{'default_type': 'opportunity', 'default_user_id': uid}</field>
+    </record>
+
+    <record id="sales_team.mail_activity_type_action_config_sales" model="ir.actions.act_window">
+        <field name="domain">['|', ('res_model_id', '=', False), ('res_model_id.model', 'in', ['crm.lead', 'sales.simple.order', 'res.partner', 'product.template', 'product.product'])]</field>
+    </record>
+    <!-- This menu is display in CRM app when sale is installed-->
+    <menuitem
+        id="sale_simple_order_menu_quotations_crm"
+        name="Presupuestos Previstos"
+        action="3mit_changes_crm.action_orders"
+        parent="crm.crm_menu_sales"
+        sequence="3"/>
+
+
+</odoo>

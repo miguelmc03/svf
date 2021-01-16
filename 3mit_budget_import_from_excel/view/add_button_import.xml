@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_crossovered_budget_import_excel" model="ir.ui.view">
+            <field name="name">crossovered_budget_import_excel</field>
+            <field name="model">crossovered.budget</field>
+            <field name="inherit_id" ref="account_budget.crossovered_budget_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//header//button[@name='action_budget_confirm']" position="after">
+                    <button name="%(3mit_budget_import_from_excel.import_data_wizard)d" string="Importar" type="action" class="on_highlight"  attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
