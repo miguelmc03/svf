@@ -1,0 +1,96 @@
+<odoo>
+
+        <record model="report.paperformat" id="paperformat_sale_simple_order">
+
+        <field name="name">paperformat.sale.simple.order</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_right">10</field>
+        <field name="margin_bottom">25</field>
+        <field name="margin_left">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+
+    </record>
+    <report
+            id="action_sale_simple_order_reporte"
+            string="Reporte de Presupuesto"
+            model="sale.simple.order"
+            report_type="qweb-pdf"
+            name="3mit_changes_crm.template_sale_simple_order"
+            file="3mit_changes_crm.template_sale_simple_order"
+            paperformat="paperformat_sale_simple_order"
+    />
+    <template id="template_sale_simple_order" >
+        <t t-call="web.html_container">
+            <div class="page">
+                <div class="article">
+                    <div class="page">
+                        <table border="3px" style="border-top: 0px solid black; width:100%; height:40px; font-size: 14px;">
+                             <t t-foreach="docs" t-as="doc">
+                                 <tr style="height:30px; width:100%; border-top: 0px solid black;">
+                                     <td style="width:70%;" class="text-left"><h3><b><span t-esc="doc['cliente_nombre']"/></b></h3></td>
+                                     <td style="width:30%;" class="text-left"><strong>Fecha de Presupuesto:</strong> &amp;nbsp;&amp;nbsp;&amp;nbsp;<span t-esc="doc['fecha_presupuesto']"/></td>
+                                 </tr>
+                                 <tr style="height:30px; width:100%; border-top: 0px solid black;">
+                                      <td class="text-left">
+                                         &amp;nbsp;&amp;nbsp;&amp;nbsp;<strong><b>Fecha de Expiración:</b></strong> &amp;nbsp;&amp;nbsp;&amp;nbsp;<span t-esc="doc['expiracion']"/>
+                                     </td>
+                                 </tr>
+                                <tr style="height:30px; width:100%; border-top: 0px solid black;">
+                                      <td class="text-left">
+                                         &amp;nbsp;&amp;nbsp;&amp;nbsp;<strong><b>Persona de ventas:</b></strong> &amp;nbsp;&amp;nbsp;&amp;nbsp;<span t-esc="doc['salesperson']"/>
+                                     </td>
+                                 </tr>
+                                 <tr style="height:30px; border-top: 0px solid black;">
+                                    <td class="text-left"> <b>*PRESUPUESTO*</b></td>
+                                 </tr>
+                            </t>
+                        </table>
+                        <br/><br/>
+                        <table border="1" style="width:100%;">
+                            <thead style="font-size:10px;">
+
+                                <tr class="text-center table-bordered" style="background-color:#A4A4A4; height:60px;   border: 1px solid #000000; font-size:6px;" >
+                                    <th class="text-center table-bordered" style="width:500px; vertical-align: middle; border: 1px solid #000000;"> DESCRIPCION </th>
+                                    <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;"> CANTIDAD </th>
+                                    <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;"> UNIDAD </th>
+                                    <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;"> PRECIO </th>
+                                    <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;"> IMPUESTOS </th>
+                                    <th class="text-center table-bordered" style="width:200px; vertical-align: middle; border: 1px solid #000000;"> MONTO TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:6px;">
+
+                                <t t-foreach="lineas" t-as="doc">
+                                    <tr style="border: 1px solid;">
+                                        <td class="text-center" style="border: 1px solid;width:10%;"> <span t-esc="doc['nombre']"/></td>
+                                        <td class="text-center" style="border: 1px solid;width:10%;"> <span t-esc="doc['cantidad']"/> </td>
+                                        <td class="text-center" style="border: 1px solid;width:9%; "> <span t-esc="doc['unidad']"/> </td>
+                                        <td class="text-center" style="border: 1px solid;width:15%;"> <span t-esc="doc['precio']"/> </td>
+                                        <td class="text-center" style="border: 1px solid;width:8%; "> <span t-esc="doc['impuestos']"/> </td>
+                                        <td class="text-center" style="border: 1px solid;width:12%;"> <span t-esc="doc['monto']"/> </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td class="text-center table-bordered" style="background-color:#A4A4A4;color:#000000; border: 1px solid #000000;">
+                                      <p>TOTAL:</p>
+                                    </td>
+                                    <td class="text-center" style="border: 1px solid;width:13%;"><span t-esc="total"/> </td>
+                                    <td colspan="1"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/><br/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

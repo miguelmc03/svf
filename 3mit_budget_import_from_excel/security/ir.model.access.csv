@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"3mit_import_excel","3mit_import_excel",model_import_budget_from_excel,,1,1,1,1
