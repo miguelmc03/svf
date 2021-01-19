@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="3mit_fabricantes_machinery_1" model="fabricantes.machinery">
+            <field name="fabricantes">AMELS HOLLAND</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_2" model="fabricantes.machinery">
+            <field name="fabricantes">ASTODON</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_3" model="fabricantes.machinery">
+            <field name="fabricantes">ATLAS COPCO</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_4" model="fabricantes.machinery">
+            <field name="fabricantes">AUSTAL SHIPS PTY. LTD.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_5" model="fabricantes.machinery">
+            <field name="fabricantes">AZIMUT</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_6" model="fabricantes.machinery">
+            <field name="fabricantes">AZIMUT-BENETTI SPA</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_7" model="fabricantes.machinery">
+            <field name="fabricantes">BENETTI</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_8" model="fabricantes.machinery">
+            <field name="fabricantes">BERTRAM YACHTS</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_9" model="fabricantes.machinery">
+            <field name="fabricantes">BIURO HANDLOWE RUDA SP.Z.O.O. SP.K.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_10" model="fabricantes.machinery">
+            <field name="fabricantes">BOCAMBIO DE BOMBIN</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_11" model="fabricantes.machinery">
+            <field name="fabricantes">CANTIERE NAVALE DI PISA S.P.A</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_12" model="fabricantes.machinery">
+            <field name="fabricantes">CANTIERI RIZZARDI</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_13" model="fabricantes.machinery">
+            <field name="fabricantes">CASLI, S.A.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_14" model="fabricantes.machinery">
+            <field name="fabricantes">CENTRAL POWER</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_15" model="fabricantes.machinery">
+            <field name="fabricantes">CHOEY LEE</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_16" model="fabricantes.machinery">
+            <field name="fabricantes">CLARKE DETROIT DIESEL-ALLISON, INC</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_17" model="fabricantes.machinery">
+            <field name="fabricantes">CLARKE POWER SERVICES, INC.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_18" model="fabricantes.machinery">
+            <field name="fabricantes">DANISH YACHT</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_19" model="fabricantes.machinery">
+            <field name="fabricantes">DETROIT CHILE</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_20" model="fabricantes.machinery">
+            <field name="fabricantes">DOOSAN</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_21" model="fabricantes.machinery">
+            <field name="fabricantes">DOOSAN INFRACORE NORWAY AS</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_22" model="fabricantes.machinery">
+            <field name="fabricantes">ELIXIR</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_23" model="fabricantes.machinery">
+            <field name="fabricantes">EUCLID</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_24" model="fabricantes.machinery">
+            <field name="fabricantes">FALCON</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_25" model="fabricantes.machinery">
+            <field name="fabricantes">FEADSHIP</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_26" model="fabricantes.machinery">
+            <field name="fabricantes">FERRETTI</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_27" model="fabricantes.machinery">
+            <field name="fabricantes">GENERAL ELECTRIC</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_28" model="fabricantes.machinery">
+            <field name="fabricantes">GRAND HARBOR</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_29" model="fabricantes.machinery">
+            <field name="fabricantes">GRUPPEL</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_30" model="fabricantes.machinery">
+            <field name="fabricantes">HATTERAS</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_31" model="fabricantes.machinery">
+            <field name="fabricantes">HEESEN YACHTS</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_32" model="fabricantes.machinery">
+            <field name="fabricantes">HIMOINSA S.L.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_33" model="fabricantes.machinery">
+            <field name="fabricantes">HITACHI CONSTRUCTION TRUCKS, LTD.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_34" model="fabricantes.machinery">
+            <field name="fabricantes">IGSA S.A. DE C.V.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_35" model="fabricantes.machinery">
+            <field name="fabricantes">INTERMARINE</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_36" model="fabricantes.machinery">
+            <field name="fabricantes">ITALSCANIA</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_37" model="fabricantes.machinery">
+            <field name="fabricantes">JOHNSON &amp; TOWERS, INC.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_38" model="fabricantes.machinery">
+            <field name="fabricantes">KAESER</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_39" model="fabricantes.machinery">
+            <field name="fabricantes">KATOLIGHT</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_40" model="fabricantes.machinery">
+            <field name="fabricantes">KLEEMANN</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_41" model="fabricantes.machinery">
+            <field name="fabricantes">KOHLER CO.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_42" model="fabricantes.machinery">
+            <field name="fabricantes">KOMATSU</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_43" model="fabricantes.machinery">
+            <field name="fabricantes">LIEBHERR</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_44" model="fabricantes.machinery">
+            <field name="fabricantes">LINK BELT</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_45" model="fabricantes.machinery">
+            <field name="fabricantes">M/V SEABULK ST JAMES</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_46" model="fabricantes.machinery">
+            <field name="fabricantes">MANITOWOC CRANE GROUP GERMANY GMBH</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_47" model="fabricantes.machinery">
+            <field name="fabricantes">MASE GENERATORS</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_48" model="fabricantes.machinery">
+            <field name="fabricantes">MCV COMERCIAL SA (CUBA)</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_49" model="fabricantes.machinery">
+            <field name="fabricantes">MDC</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_50" model="fabricantes.machinery">
+            <field name="fabricantes">MONTECARLO</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_51" model="fabricantes.machinery">
+            <field name="fabricantes">MOXY</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_52" model="fabricantes.machinery">
+            <field name="fabricantes">MTU IBERICA</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_53" model="fabricantes.machinery">
+            <field name="fabricantes">MTU ITALIA</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_54" model="fabricantes.machinery">
+            <field name="fabricantes">MTU ONSITE ENERGY</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_55" model="fabricantes.machinery">
+            <field name="fabricantes">NOVA BUS INCORPORATED</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_56" model="fabricantes.machinery">
+            <field name="fabricantes">OCEAN FAST</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_57" model="fabricantes.machinery">
+            <field name="fabricantes">ONAN</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_58" model="fabricantes.machinery">
+            <field name="fabricantes">OSHKOSH CORP.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_59" model="fabricantes.machinery">
+            <field name="fabricantes">OTTO MOTORES</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_60" model="fabricantes.machinery">
+            <field name="fabricantes">PALMER JOHNSON</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_61" model="fabricantes.machinery">
+            <field name="fabricantes">PIERCE</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_62" model="fabricantes.machinery">
+            <field name="fabricantes">RIVIERA</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_63" model="fabricantes.machinery">
+            <field name="fabricantes">RIZZARDI</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_64" model="fabricantes.machinery">
+            <field name="fabricantes">S&amp;S</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_65" model="fabricantes.machinery">
+            <field name="fabricantes">S.N.P. BOAT SERVICE SA.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_66" model="fabricantes.machinery">
+            <field name="fabricantes">SAN LORENZO</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_67" model="fabricantes.machinery">
+            <field name="fabricantes">SANDVICK</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_68" model="fabricantes.machinery">
+            <field name="fabricantes">SCANIA MX</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_69" model="fabricantes.machinery">
+            <field name="fabricantes">SCHRAMM INC</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_70" model="fabricantes.machinery">
+            <field name="fabricantes">SDMO</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_71" model="fabricantes.machinery">
+            <field name="fabricantes">SMITH POWER UNIT</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_72" model="fabricantes.machinery">
+            <field name="fabricantes">SON SYKER</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_73" model="fabricantes.machinery">
+            <field name="fabricantes">ST</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_74" model="fabricantes.machinery">
+            <field name="fabricantes">STADLER RAIL VALENCIA S.A.U. / VOSSLOH ESPAÑA, S.A.</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_75" model="fabricantes.machinery">
+            <field name="fabricantes">STEWARD &amp; STEVENSON</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_76" model="fabricantes.machinery">
+            <field name="fabricantes">SUNSEEKER</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_77" model="fabricantes.machinery">
+            <field name="fabricantes">TAMROCK</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_78" model="fabricantes.machinery">
+            <field name="fabricantes">TEREX EQUIPMENT</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_79" model="fabricantes.machinery">
+            <field name="fabricantes">UNITED ENGINE</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_80" model="fabricantes.machinery">
+            <field name="fabricantes">VIKING YACHT</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_81" model="fabricantes.machinery">
+            <field name="fabricantes">WAJAX</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_82" model="fabricantes.machinery">
+            <field name="fabricantes">WESTERN STAR TRUCK</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_83" model="fabricantes.machinery">
+            <field name="fabricantes">WESTPORT</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_84" model="fabricantes.machinery">
+            <field name="fabricantes">WILLIS MARINE</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_85" model="fabricantes.machinery">
+            <field name="fabricantes">YANMAR DIESEL AMERICA MARINE DIV</field>
+        </record>
+
+        <record id="3mit_fabricantes_machinery_86" model="fabricantes.machinery">
+            <field name="fabricantes">ZF</field>
+        </record>
+    </data>
+</odoo>

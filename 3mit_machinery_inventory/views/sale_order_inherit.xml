@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="3mit_sale_order_inherit_view" model="ir.ui.view">
+            <field name="name">3mit.sale.order.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="_status_id" widget="boolean_toggle" />
+                    <field name="un_client"
+                           widget="boolean_toggle"
+                           attrs="{'invisible': [('_status_id','=',False)]}"
+                    />
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="machinery_inventory"
+                           attrs="{'invisible': [('_status_id','=',False)]}"
+                           placeholder="Seleccione el propietario de la máquina"
+                           options="{'no_create': True, 'no_create_edit': True}"
+                    />
+                    <field name="machinery_to_maintenance"
+                           attrs="{'invisible': [('_status_id','=',False)]}"
+                           placeholder="Seleccione la máquina"
+                           options="{'no_create': True, 'no_create_edit': True}"
+                    />
+                    <field name="tipo_servicio"
+                           attrs="{'invisible': [('_status_id','=',False)]}"
+                           placeholder="Seleccione el tipo de servicio"
+                           widget="many2many_tags"
+                    />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
