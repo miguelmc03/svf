@@ -255,7 +255,7 @@ class SaleOrder(models.Model):
                 }
 
     # Para definir si es o no un presupuesto de maquinaria y si el cliente esta o no registrado
-    _status_id = fields.Boolean(string="¿Presupuesto de maquinaria?", default=False)
+    _status_id = fields.Boolean(string="Presupuesto de servicio a equipos", default=False)
     un_client = fields.Boolean(string="¿Cliente registrado?", default=True)
 
     machinery_inventory = fields.Many2one('machinery.inventory', string="Propietario de la máquina")
