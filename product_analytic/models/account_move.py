@@ -13,6 +13,7 @@ INV_TYPE_MAP = {
 }
 
 
+
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 

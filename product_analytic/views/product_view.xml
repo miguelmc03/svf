@@ -18,6 +18,7 @@
         </field>
     </record>
 
+
     <record id="view_category_property_form" model="ir.ui.view">
         <field name="name">product_analytic_account.product.categ.form</field>
         <field name="model">product.category</field>

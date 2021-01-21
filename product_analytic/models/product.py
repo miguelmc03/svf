@@ -21,6 +21,7 @@ class ProductTemplate(models.Model):
     )
 
 
+
     def _get_product_analytic_accounts(self):
         self.ensure_one()
         return {
