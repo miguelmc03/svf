@@ -83,6 +83,7 @@ class Currency(models.Model):
             tipoeur['importe'] = tipomxn.get('importe', 0.0) / tipoeur.get('importe', 0.0)
         return tipoCambios
 
+
     def refresh_currency(self, tipoCambios):
         Currency = self.env['res.currency']
         CurrencyRate = self.env['res.currency.rate']

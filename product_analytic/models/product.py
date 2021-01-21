@@ -20,6 +20,7 @@ class ProductTemplate(models.Model):
         company_dependent=True,
     )
 
+
     def _get_product_analytic_accounts(self):
         self.ensure_one()
         return {

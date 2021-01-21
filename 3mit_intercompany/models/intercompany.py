@@ -11,6 +11,7 @@ class purchase_order(models.Model):
     state_auto = fields.Boolean(default=False)
 
 
+
     @api.model
     def create(self, vals):
         res = super(purchase_order, self).create(vals)

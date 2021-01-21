@@ -85,6 +85,7 @@ class SaleSimpleOrder(models.Model):
             else:
                 order.invoice_status = 'no'
 
+
     @api.model
     def get_empty_list_help(self, help):
         self = self.with_context(

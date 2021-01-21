@@ -29,6 +29,7 @@ class Lead2OpportunityPartner(models.TransientModel):
 #     def _value_pc(self):
 #         for record in self:
 #             record.value2 = float(record.value) / 100
+
 class Lead(models.Model):
     _inherit = "crm.lead"
 
