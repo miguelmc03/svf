@@ -10,7 +10,7 @@
     "category": "company",
     #"website": "",
     "colaborador":"Yorman Pineda",
-    'depends': ['purchase', 'sale', 'base', 'inter_company_rules'],
+    'depends': ['purchase', 'sale', 'base', 'inter_company_rules', 'account','mail'],
 
     'demo': [
     ],
