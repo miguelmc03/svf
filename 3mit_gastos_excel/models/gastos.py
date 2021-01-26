@@ -97,7 +97,12 @@ class GastosCargaExcel(models.TransientModel):
             if not lis[9] or not lis[10]:
                 raise UserError('Indique tooso los precios unitarios y totales')
             uuid = lis[11]
-            referencia = lis[12]
+            name = lis[12]
+            referencia = lis[13]
+            if lis[14]:
+                impuesto_id = self.env['account.tax'].search([('amount', '=', float(lis[14])), ('type_tax_use','=','purchase')])
+            else:
+                impuesto_id = False
             dic = {
                 'name': name,
                 'employee_id': employee_id.id,
@@ -114,7 +119,8 @@ class GastosCargaExcel(models.TransientModel):
                 'unit_amount': float(lis[9]),
                 'total_amount': float(lis[10]),
                 'uuid': uuid,
-                'reference': referencia
+                'reference': referencia,
+                'tax_ids': impuesto_id
             }
             vb = self.env['hr.expense'].create(dic)
             vb.action_submit_expenses()
