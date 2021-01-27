@@ -38,8 +38,6 @@
                             <tr>
                                 <th>Descripción</th>
                                 <th class="text-right">Cantidad</th>
-                                <th class="text-right">Precio unitario</th>
-                                <th class="text-center">Impuesto</th>
                                 <th class="text-right">Precio</th>
                             </tr>
                         </thead>
@@ -55,14 +53,8 @@
                                         <span t-field="line.product_uom_qty"/>
                                         <span groups="uom.group_uom" t-field="line.product_uom.name"/>
                                     </td>
-                                    <td class="text-right">
-                                        <span t-field="line.price_unit"/>
-                                    </td>
-                                    <td class="text-center">
-                                        <span t-esc="','.join(map( lambda x: x.name, line.tax_id))"/>
-                                    </td>
                                     <td class="text-right o_price_total">
-                                        <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>
+                                        <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
                                     </td>
                                 </tr>
                             </t>
@@ -84,7 +76,7 @@
                                     </td>
                                     <td class="text-right o_price_total">
                                         <span t-field="fees.price_subtotal"
-                                              t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
                                     </td>
                                 </tr>
                             </t>
@@ -94,25 +86,11 @@
                     <div id="total" class="row justify-content-end">
                         <div class="col-4">
                             <table class="table table-sm">
-                                <tr class="border-black o_subtotal">
-                                    <td><strong>Total sin impuestos</strong></td>
-                                    <td class="text-right">
-                                        <span t-field="o.amount_untaxed"
-                                              t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Impuestos</td>
-                                    <td class="text-right o_price_total">
-                                        <span t-field="o.amount_tax"
-                                              t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>
-                                    </td>
-                                </tr>
                                 <tr class="border-black o_total">
                                     <td><strong>Total</strong></td>
                                     <td class="text-right o_price_total">
                                         <span t-field="o.amount_total"
-                                              t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
                                     </td>
                                 </tr>
                             </table>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class RepairOrderInherit(models.Model):
@@ -41,3 +41,17 @@ class RepairLineInherit(models.Model):
         else:
             self.location_id = self.env['stock.location'].search([('usage', '=', 'production')], limit=1).id
             self.location_dest_id = self.env['stock.location'].search([('scrap_location', '=', True)], limit=1).id
+
+    @api.onchange('product_uom')
+    def _onchange_product_uom(self):
+        price = self.product_id.standard_price
+        if price is False:
+            warning = {
+                'title': _('No se encontró una línea de lista de precios válida.'),
+                'message':
+                    _(
+                        "No se pudo encontrar una línea de lista de precios que coincida con este producto y "
+                        "la cantidad. \nDebe cambiar el producto, la cantidad o la lista de precios.")}
+            return {'warning': warning}
+        else:
+            self.price_unit = price
