@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import repair_line_inherit
+from . import repair_inherit

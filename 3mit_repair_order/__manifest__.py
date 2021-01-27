@@ -15,13 +15,11 @@
     'author': "3MIT",
     'website': "https://www.3mit.dev/",
     'category': 'Reparación',
-    'version': '1.1.3',
+    'version': '1.1.4',
 
-    'depends': ['base', 'repair'],
+    'depends': ['base', 'repair', 'project', 'helpdesk', 'helpdesk_repair'],
     'data': [
+        'views/repair_order_inherit_view.xml',
         'report/inherit_repair_order.xml',
-    ],
-    'demo': [
-
     ],
 }

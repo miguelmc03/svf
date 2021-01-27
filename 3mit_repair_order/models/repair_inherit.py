@@ -1,6 +1,27 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, api
+from odoo import models, fields, api
+
+
+class RepairOrderInherit(models.Model):
+    _inherit = 'repair.order'
+
+    analytic_account_id = fields.Many2one(string="Cuenta analítica asociada",
+                                          related="ticket_id.team_id.project_id.analytic_account_id")
+
+    def action_validate(self):
+        res = super(RepairOrderInherit, self).action_validate()
+        repair_vals = {
+            'name': self.name + ' - ' + self.ticket_id.name,
+            'account_id': self.analytic_account_id.id,
+            'date': self.create_date,
+            'amount': self.amount_total * -1,
+        }
+
+        analytic_account_line = self.env['account.analytic.line']. \
+            search([('account_id', '=', self.analytic_account_id.id)]).create(repair_vals)
+
+        return res
 
 
 class RepairLineInherit(models.Model):
