@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="3mit_repair_order" model="ir.ui.view">
+      <field name="name">3mit.repair.order</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_order_form" />
+            <field name="arch" type="xml">
+
+              <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="analytic_account_id"
+                           readonly="1"
+                           attrs="{'invisible': [('ticket_id', '=', False)]}"
+                    />
+                </xpath>
+
+                <xpath expr="//field[@name='operations']/form/group/group/field[@name='price_unit']" position="replace">
+                    <field name="price_unit"
+                           string="Costo"
+                    />
+                </xpath>
+                <xpath expr="//field[@name='operations']/tree/field[@name='price_unit']" position="replace">
+                    <field name="price_unit"
+                           string="Costo"
+                    />
+                </xpath>
+
+                <xpath expr="//field[@name='fees_lines']/form/group/field[@name='price_unit']" position="replace">
+                    <field name="price_unit"
+                           string="Costo"
+                    />
+                </xpath>
+                <xpath expr="//field[@name='fees_lines']/tree/field[@name='price_unit']" position="replace">
+                    <field name="price_unit"
+                           string="Costo"
+                    />
+                </xpath>
+            </field>
+    </record>
+  </data>
+</odoo>
