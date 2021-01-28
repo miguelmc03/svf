@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Acciones para el menú -->
+        <record id="act_machinery_inventory_form" model="ir.actions.act_window">
+            <field name="name">Inventario de maquinaria</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">machinery.inventory</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="act_machinery_registry_form" model="ir.actions.act_window">
+            <field name="name">Registro de maquinaria</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">machinery.registry</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Vista para el menú root -->
+        <menuitem
+            id="action_machinery_menu"
+            name="Maquinaria"
+            sequence="99"
+            parent="stock.menu_stock_root"
+        />
+        <!-- Submenú para el registro de una nueva maquina -->
+        <menuitem
+            id="act_machinery_registry"
+            name="Registrar nueva maquinaria"
+            parent="action_machinery_menu"
+            action="act_machinery_registry_form"
+            sequence="1"
+        />
+        <!-- Submenú para añadir maquinaria al inventario -->
+        <menuitem
+            id="act_machinery_inventory"
+            name="Añadir propietario a maquinaria"
+            parent="action_machinery_menu"
+            action="act_machinery_inventory_form"
+            sequence="2"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Acciones para el menú -->
+
+        <record id="act_unregistered_clients_form" model="ir.actions.act_window">
+            <field name="name">Clientes no registrados</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">unregistered.clients</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Vista para el menú root -->
+        <menuitem
+            id="action_unregistered_clients_menu"
+            name="Clientes no registrados"
+            sequence="1"
+            parent="contacts.menu_contacts"
+        />
+        <!-- Submenú para el registro de un nuevo cliente -->
+        <menuitem
+            id="act_new_client"
+            name="Registrar nuevo cliente"
+            parent="action_unregistered_clients_menu"
+            action="act_unregistered_clients_form"
+            sequence="1"
+        />
+    </data>
+</odoo>

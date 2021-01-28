@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_machinery_inventory,access_machinery_inventory,model_machinery_inventory,base.group_user,1,1,1,1
+access_machinery_registry,access_machinery_registry,model_machinery_registry,base.group_user,1,1,1,1
+access_fabricantes_machinery,access_fabricantes_machinery,model_fabricantes_machinery,base.group_user,1,1,1,1
+access_serie_machinery,access_serie_machinery,model_serie_machinery,base.group_user,1,1,1,1
+access_model_machinery,access_model_machinery,model_model_machinery,base.group_user,1,1,1,1
+access_aplicacion_machinery,access_aplicacion_machinery,model_aplicacion_machinery,base.group_user,1,1,1,1
+access_service_machinery,access_service_machinery,model_service_machinery,base.group_user,1,1,1,1
+access_unregistered_clients,access_unregistered_clients,model_unregistered_clients,base.group_user,1,1,1,1

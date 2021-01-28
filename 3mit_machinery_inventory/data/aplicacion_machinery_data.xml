@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="3mit_aplicacion_machinery_1" model="aplicacion.machinery">
+            <field name="aplicacion">CONSTRUCTION</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_2" model="aplicacion.machinery">
+            <field name="aplicacion">GAS GENERATION</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_3" model="aplicacion.machinery">
+            <field name="aplicacion">GENERATION</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_4" model="aplicacion.machinery">
+            <field name="aplicacion">GENERATION ON BOARD</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_5" model="aplicacion.machinery">
+            <field name="aplicacion">GENERATOR DRIVE</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_6" model="aplicacion.machinery">
+            <field name="aplicacion">INDUSTRIAL</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_7" model="aplicacion.machinery">
+            <field name="aplicacion">MARINE</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_8" model="aplicacion.machinery">
+            <field name="aplicacion">MINING</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_9" model="aplicacion.machinery">
+            <field name="aplicacion">OIL &amp; GAS</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_10" model="aplicacion.machinery">
+            <field name="aplicacion">POWER UNIT</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_11" model="aplicacion.machinery">
+            <field name="aplicacion">RAIL</field>
+        </record>
+
+        <record id="3mit_aplicacion_machinery_12" model="aplicacion.machinery">
+            <field name="aplicacion">VEHICULAR</field>
+        </record>
+
+    </data>
+</odoo>
