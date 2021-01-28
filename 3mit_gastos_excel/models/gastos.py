@@ -63,7 +63,7 @@ class GastosCargaExcel(models.TransientModel):
                         raise UserError('No se encuentra la cuenta %s' % (lis[5]))
             else:
                 analytic_account_id = self.env['account.analytic.account'].search(
-                    [('name', '=', lis[7])], limit=1)
+                    [('id', '=', int(lis[7]))], limit=1)
                 if not analytic_account_id:
                     raise UserError('No se encuentra la cuenta analítica %s' % (lis[7]))
                 if not lis[5]:
@@ -82,7 +82,7 @@ class GastosCargaExcel(models.TransientModel):
                 payment_mode = 'own_account'
             # analytic_taf_ids = self.env['account.analytic.tag'].search([('name', '=', lis[5])],
             #                                              limit=1)
-            product_id = self.env['product.product'].search([('default_code', '=', lis[3])],
+            product_id = self.env['product.product'].search([('id', '=', int(lis[3]))],
                                                          limit=1)
             if not lis[4]:
                 raise UserError('Por favor indique la cantidad')
