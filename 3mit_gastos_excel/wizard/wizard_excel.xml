@@ -1,0 +1,47 @@
+<odoo>
+
+  <data>
+      <record id="view_gastos_excel_wizard" model="ir.ui.view">
+            <field name="name">wizard.gastos.excel.form</field>
+                <field name="model">wizard.gastos.excel</field>
+                <field name="arch" type="xml">
+                    <form string="Funciones Vpos">
+                        <script>
+                            $(document).ready(function(){
+                                $('.modal-dialog').css({'width': '50%'});
+                            });
+                        </script>
+                        <group>
+                            <field name="document_origin" filename="document_name" string="Cargar archivo excel"/>
+                            <field name="name_document" invisible="1"/>
+                            <center>
+                                <footer>
+                                    <button type="object" string="Cargar" name="carga_data" icon="fa-mail-reply-all"/>
+                                    <button type="special" special="cancel" string="Cancel" icon="fa-times-circle"/>
+                                </footer>
+                            </center>
+                        </group>
+                    </form>
+                </field>
+        </record>
+
+        <record id="action_wizard_gastos" model="ir.actions.act_window">
+        	<field name="name">Funcion de carga de gastos</field>
+        	<field name="res_model">wizard.gastos.excel</field>
+        	<field name="binding_view_types">form</field>
+        	<field name="view_mode">form</field>
+        	<field name="view_id" ref="view_gastos_excel_wizard"/>
+        	<field name="target">new</field>
+    	</record>
+
+
+    <menuitem
+         id="action_wizard_excel_gastos"
+         parent="hr_expense.menu_hr_expense_root"
+         action="action_wizard_gastos"
+         name="Carga de Gastos"
+         sequence="1"
+    />
+
+  </data>
+</odoo>

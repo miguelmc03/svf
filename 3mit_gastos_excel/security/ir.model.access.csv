@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_3mit_gastos_excel_wizard_gastos_excel,3mit_gastos_excel.wizard_gastos_excels,model_wizard_gastos_excel,,1,1,1,1
+access_3mit_gastos_excel_marcas_model,3mit_gastos_excel.marcas_model,model_marcas_model,,1,1,1,1
