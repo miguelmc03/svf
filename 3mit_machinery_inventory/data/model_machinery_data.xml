@@ -1,0 +1,1286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="3mit_model_machinery_1" model="model.machinery">
+            <field name="modelo_maquinaria">750</field>
+        </record>
+
+        <record id="3mit_model_machinery_2" model="model.machinery">
+            <field name="modelo_maquinaria"> 6L71 TI</field>
+        </record>
+
+        <record id="3mit_model_machinery_3" model="model.machinery">
+            <field name="modelo_maquinaria">6R099TE51</field>
+        </record>
+
+        <record id="3mit_model_machinery_4" model="model.machinery">
+            <field name="modelo_maquinaria">10V1600G</field>
+        </record>
+
+        <record id="3mit_model_machinery_5" model="model.machinery">
+            <field name="modelo_maquinaria">10V1600G20S</field>
+        </record>
+
+        <record id="3mit_model_machinery_6" model="model.machinery">
+            <field name="modelo_maquinaria">10V1600G70F</field>
+        </record>
+
+        <record id="3mit_model_machinery_7" model="model.machinery">
+            <field name="modelo_maquinaria">10V1600G70S</field>
+        </record>
+
+        <record id="3mit_model_machinery_8" model="model.machinery">
+            <field name="modelo_maquinaria">10V1600G80S</field>
+        </record>
+
+        <record id="3mit_model_machinery_9" model="model.machinery">
+            <field name="modelo_maquinaria">10V183AA51</field>
+        </record>
+
+        <record id="3mit_model_machinery_10" model="model.machinery">
+            <field name="modelo_maquinaria">10V2000M72</field>
+        </record>
+
+        <record id="3mit_model_machinery_11" model="model.machinery">
+            <field name="modelo_maquinaria">10V2000M94</field>
+        </record>
+
+        <record id="3mit_model_machinery_12" model="model.machinery">
+            <field name="modelo_maquinaria">12V149</field>
+        </record>
+
+        <record id="3mit_model_machinery_13" model="model.machinery">
+            <field name="modelo_maquinaria">12V149T</field>
+        </record>
+
+        <record id="3mit_model_machinery_14" model="model.machinery">
+            <field name="modelo_maquinaria">12V1600G80S</field>
+        </record>
+
+        <record id="3mit_model_machinery_15" model="model.machinery">
+            <field name="modelo_maquinaria">12V183TA32</field>
+        </record>
+
+        <record id="3mit_model_machinery_16" model="model.machinery">
+            <field name="modelo_maquinaria">12V183TE92</field>
+        </record>
+
+        <record id="3mit_model_machinery_17" model="model.machinery">
+            <field name="modelo_maquinaria">12V183TE93</field>
+        </record>
+
+        <record id="3mit_model_machinery_18" model="model.machinery">
+            <field name="modelo_maquinaria">12V183TE94</field>
+        </record>
+
+        <record id="3mit_model_machinery_19" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000</field>
+        </record>
+
+        <record id="3mit_model_machinery_20" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000C10</field>
+        </record>
+
+        <record id="3mit_model_machinery_21" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000C21R</field>
+        </record>
+
+        <record id="3mit_model_machinery_22" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G25TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_23" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G44-TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_24" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G45</field>
+        </record>
+
+        <record id="3mit_model_machinery_25" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G45-TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_26" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G62</field>
+        </record>
+
+        <record id="3mit_model_machinery_27" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G82</field>
+        </record>
+
+        <record id="3mit_model_machinery_28" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G83</field>
+        </record>
+
+        <record id="3mit_model_machinery_29" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G83TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_30" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G85</field>
+        </record>
+
+        <record id="3mit_model_machinery_31" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000G85-TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_32" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000M61</field>
+        </record>
+
+        <record id="3mit_model_machinery_33" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000M72</field>
+        </record>
+
+        <record id="3mit_model_machinery_34" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000M90</field>
+        </record>
+
+        <record id="3mit_model_machinery_35" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000M91</field>
+        </record>
+
+        <record id="3mit_model_machinery_36" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000M92</field>
+        </record>
+
+        <record id="3mit_model_machinery_37" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000M93</field>
+        </record>
+
+        <record id="3mit_model_machinery_38" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000M96L</field>
+        </record>
+
+        <record id="3mit_model_machinery_39" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000S10</field>
+        </record>
+
+        <record id="3mit_model_machinery_40" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000S12</field>
+        </record>
+
+        <record id="3mit_model_machinery_41" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000S52R</field>
+        </record>
+
+        <record id="3mit_model_machinery_42" model="model.machinery">
+            <field name="modelo_maquinaria">12V2000S92R</field>
+        </record>
+
+        <record id="3mit_model_machinery_43" model="model.machinery">
+            <field name="modelo_maquinaria">12V331TB82</field>
+        </record>
+
+        <record id="3mit_model_machinery_44" model="model.machinery">
+            <field name="modelo_maquinaria">12V331TC71</field>
+        </record>
+
+        <record id="3mit_model_machinery_45" model="model.machinery">
+            <field name="modelo_maquinaria">12V331TC92</field>
+        </record>
+
+        <record id="3mit_model_machinery_46" model="model.machinery">
+            <field name="modelo_maquinaria">12V396TB83</field>
+        </record>
+
+        <record id="3mit_model_machinery_47" model="model.machinery">
+            <field name="modelo_maquinaria">12V396TB93</field>
+        </record>
+
+        <record id="3mit_model_machinery_48" model="model.machinery">
+            <field name="modelo_maquinaria">12V396TB94</field>
+        </record>
+
+        <record id="3mit_model_machinery_49" model="model.machinery">
+            <field name="modelo_maquinaria">12V396TC34</field>
+        </record>
+
+        <record id="3mit_model_machinery_50" model="model.machinery">
+            <field name="modelo_maquinaria">12V396TC52</field>
+        </record>
+
+        <record id="3mit_model_machinery_51" model="model.machinery">
+            <field name="modelo_maquinaria">12V396TE74L</field>
+        </record>
+
+        <record id="3mit_model_machinery_52" model="model.machinery">
+            <field name="modelo_maquinaria">12V396TE94</field>
+        </record>
+
+        <record id="3mit_model_machinery_53" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000</field>
+        </record>
+
+        <record id="3mit_model_machinery_54" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000C21</field>
+        </record>
+
+        <record id="3mit_model_machinery_55" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000C21R</field>
+        </record>
+
+        <record id="3mit_model_machinery_56" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000G23</field>
+        </record>
+
+        <record id="3mit_model_machinery_57" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000G43</field>
+        </record>
+
+        <record id="3mit_model_machinery_58" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000G61</field>
+        </record>
+
+        <record id="3mit_model_machinery_59" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000G73</field>
+        </record>
+
+        <record id="3mit_model_machinery_60" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000G80</field>
+        </record>
+
+        <record id="3mit_model_machinery_61" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000G81</field>
+        </record>
+
+        <record id="3mit_model_machinery_62" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000G83</field>
+        </record>
+
+        <record id="3mit_model_machinery_63" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000L62</field>
+        </record>
+
+        <record id="3mit_model_machinery_64" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000M53</field>
+        </record>
+
+        <record id="3mit_model_machinery_65" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000M63</field>
+        </record>
+
+        <record id="3mit_model_machinery_66" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000M70</field>
+        </record>
+
+        <record id="3mit_model_machinery_67" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000M90</field>
+        </record>
+
+        <record id="3mit_model_machinery_68" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000P83</field>
+        </record>
+
+        <record id="3mit_model_machinery_69" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000S21R</field>
+        </record>
+
+        <record id="3mit_model_machinery_70" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000S81</field>
+        </record>
+
+        <record id="3mit_model_machinery_71" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000S83</field>
+        </record>
+
+        <record id="3mit_model_machinery_72" model="model.machinery">
+            <field name="modelo_maquinaria">12V4000T95L</field>
+        </record>
+
+        <record id="3mit_model_machinery_73" model="model.machinery">
+            <field name="modelo_maquinaria">12V652TB81</field>
+        </record>
+
+        <record id="3mit_model_machinery_74" model="model.machinery">
+            <field name="modelo_maquinaria">12V71</field>
+        </record>
+
+        <record id="3mit_model_machinery_75" model="model.machinery">
+            <field name="modelo_maquinaria">12V71 AN</field>
+        </record>
+
+        <record id="3mit_model_machinery_76" model="model.machinery">
+            <field name="modelo_maquinaria">12V71 TA</field>
+        </record>
+
+        <record id="3mit_model_machinery_77" model="model.machinery">
+            <field name="modelo_maquinaria">12V71NT</field>
+        </record>
+
+        <record id="3mit_model_machinery_78" model="model.machinery">
+            <field name="modelo_maquinaria">12V92</field>
+        </record>
+
+        <record id="3mit_model_machinery_79" model="model.machinery">
+            <field name="modelo_maquinaria">12V92 TA</field>
+        </record>
+
+        <record id="3mit_model_machinery_80" model="model.machinery">
+            <field name="modelo_maquinaria">16V149</field>
+        </record>
+
+        <record id="3mit_model_machinery_81" model="model.machinery">
+            <field name="modelo_maquinaria">16V149 TA</field>
+        </record>
+
+        <record id="3mit_model_machinery_82" model="model.machinery">
+            <field name="modelo_maquinaria">16V149T1</field>
+        </record>
+
+        <record id="3mit_model_machinery_83" model="model.machinery">
+            <field name="modelo_maquinaria">16V149TB1</field>
+        </record>
+
+        <record id="3mit_model_machinery_84" model="model.machinery">
+            <field name="modelo_maquinaria">16V149TI</field>
+        </record>
+
+        <record id="3mit_model_machinery_85" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000</field>
+        </record>
+
+        <record id="3mit_model_machinery_86" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000C12</field>
+        </record>
+
+        <record id="3mit_model_machinery_87" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G22</field>
+        </record>
+
+        <record id="3mit_model_machinery_88" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G42</field>
+        </record>
+
+        <record id="3mit_model_machinery_89" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G43</field>
+        </record>
+
+        <record id="3mit_model_machinery_90" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G44TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_91" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G45-TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_92" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G62</field>
+        </record>
+
+        <record id="3mit_model_machinery_93" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G63</field>
+        </record>
+
+        <record id="3mit_model_machinery_94" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G65</field>
+        </record>
+
+        <record id="3mit_model_machinery_95" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G70</field>
+        </record>
+
+        <record id="3mit_model_machinery_96" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G82</field>
+        </record>
+
+        <record id="3mit_model_machinery_97" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G83</field>
+        </record>
+
+        <record id="3mit_model_machinery_98" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G83-TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_99" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G84-TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_100" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G85</field>
+        </record>
+
+        <record id="3mit_model_machinery_101" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G85-TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_102" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000G86S</field>
+        </record>
+
+        <record id="3mit_model_machinery_103" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000M56L</field>
+        </record>
+
+        <record id="3mit_model_machinery_104" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000M70</field>
+        </record>
+
+        <record id="3mit_model_machinery_105" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000M84</field>
+        </record>
+
+        <record id="3mit_model_machinery_106" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000M90</field>
+        </record>
+
+        <record id="3mit_model_machinery_107" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000M91</field>
+        </record>
+
+        <record id="3mit_model_machinery_108" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000M92</field>
+        </record>
+
+        <record id="3mit_model_machinery_109" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000M93</field>
+        </record>
+
+        <record id="3mit_model_machinery_110" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000M94</field>
+        </record>
+
+        <record id="3mit_model_machinery_111" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000M96L</field>
+        </record>
+
+        <record id="3mit_model_machinery_112" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000S12</field>
+        </record>
+
+        <record id="3mit_model_machinery_113" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000S52</field>
+        </record>
+
+        <record id="3mit_model_machinery_114" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000S61</field>
+        </record>
+
+        <record id="3mit_model_machinery_115" model="model.machinery">
+            <field name="modelo_maquinaria">16V2000TE90</field>
+        </record>
+
+        <record id="3mit_model_machinery_116" model="model.machinery">
+            <field name="modelo_maquinaria">16V396TB63</field>
+        </record>
+
+        <record id="3mit_model_machinery_117" model="model.machinery">
+            <field name="modelo_maquinaria">16V396TB84</field>
+        </record>
+
+        <record id="3mit_model_machinery_118" model="model.machinery">
+            <field name="modelo_maquinaria">16V396TC34</field>
+        </record>
+
+        <record id="3mit_model_machinery_119" model="model.machinery">
+            <field name="modelo_maquinaria">16V396TE74L</field>
+        </record>
+
+        <record id="3mit_model_machinery_120" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000C21</field>
+        </record>
+
+        <record id="3mit_model_machinery_121" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000G23</field>
+        </record>
+
+        <record id="3mit_model_machinery_122" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000G41</field>
+        </record>
+
+        <record id="3mit_model_machinery_123" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000G43</field>
+        </record>
+
+        <record id="3mit_model_machinery_124" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000G63</field>
+        </record>
+
+        <record id="3mit_model_machinery_125" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000G80</field>
+        </record>
+
+        <record id="3mit_model_machinery_126" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000G81</field>
+        </record>
+
+        <record id="3mit_model_machinery_127" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000G83</field>
+        </record>
+
+        <record id="3mit_model_machinery_128" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000G83L</field>
+        </record>
+
+        <record id="3mit_model_machinery_129" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000L32F</field>
+        </record>
+
+        <record id="3mit_model_machinery_130" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000M33F</field>
+        </record>
+
+        <record id="3mit_model_machinery_131" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000M40A</field>
+        </record>
+
+        <record id="3mit_model_machinery_132" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000M60</field>
+        </record>
+
+        <record id="3mit_model_machinery_133" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000M63</field>
+        </record>
+
+        <record id="3mit_model_machinery_134" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000M63L</field>
+        </record>
+
+        <record id="3mit_model_machinery_135" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000M70</field>
+        </record>
+
+        <record id="3mit_model_machinery_136" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000M93L</field>
+        </record>
+
+        <record id="3mit_model_machinery_137" model="model.machinery">
+            <field name="modelo_maquinaria">16V4000R41</field>
+        </record>
+
+        <record id="3mit_model_machinery_138" model="model.machinery">
+            <field name="modelo_maquinaria">16V538TB31</field>
+        </record>
+
+        <record id="3mit_model_machinery_139" model="model.machinery">
+            <field name="modelo_maquinaria">16V538TB82</field>
+        </record>
+
+        <record id="3mit_model_machinery_140" model="model.machinery">
+            <field name="modelo_maquinaria">16V538TB91</field>
+        </record>
+
+        <record id="3mit_model_machinery_141" model="model.machinery">
+            <field name="modelo_maquinaria">16V71</field>
+        </record>
+
+        <record id="3mit_model_machinery_142" model="model.machinery">
+            <field name="modelo_maquinaria">16V71T</field>
+        </record>
+
+        <record id="3mit_model_machinery_143" model="model.machinery">
+            <field name="modelo_maquinaria">16V92</field>
+        </record>
+
+        <record id="3mit_model_machinery_144" model="model.machinery">
+            <field name="modelo_maquinaria">183TE93</field>
+        </record>
+
+        <record id="3mit_model_machinery_145" model="model.machinery">
+            <field name="modelo_maquinaria">18V2000G43</field>
+        </record>
+
+        <record id="3mit_model_machinery_146" model="model.machinery">
+            <field name="modelo_maquinaria">18V2000G83TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_147" model="model.machinery">
+            <field name="modelo_maquinaria">18V2000G85</field>
+        </record>
+
+        <record id="3mit_model_machinery_148" model="model.machinery">
+            <field name="modelo_maquinaria">18V2000G85-TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_149" model="model.machinery">
+            <field name="modelo_maquinaria">20V149</field>
+        </record>
+
+        <record id="3mit_model_machinery_150" model="model.machinery">
+            <field name="modelo_maquinaria">20V4000C22</field>
+        </record>
+
+        <record id="3mit_model_machinery_151" model="model.machinery">
+            <field name="modelo_maquinaria">20V4000G43</field>
+        </record>
+
+        <record id="3mit_model_machinery_152" model="model.machinery">
+            <field name="modelo_maquinaria">20V4000G83</field>
+        </record>
+
+        <record id="3mit_model_machinery_153" model="model.machinery">
+            <field name="modelo_maquinaria">20V4000G83L</field>
+        </record>
+
+        <record id="3mit_model_machinery_154" model="model.machinery">
+            <field name="modelo_maquinaria">20V4000GS</field>
+        </record>
+
+        <record id="3mit_model_machinery_155" model="model.machinery">
+            <field name="modelo_maquinaria">20V4000L32F</field>
+        </record>
+
+        <record id="3mit_model_machinery_156" model="model.machinery">
+            <field name="modelo_maquinaria">20V4000L33F</field>
+        </record>
+
+        <record id="3mit_model_machinery_157" model="model.machinery">
+            <field name="modelo_maquinaria">20V4000L64</field>
+        </record>
+
+        <record id="3mit_model_machinery_158" model="model.machinery">
+            <field name="modelo_maquinaria">20V4000M93L</field>
+        </record>
+
+        <record id="3mit_model_machinery_159" model="model.machinery">
+            <field name="modelo_maquinaria">20V956TB92</field>
+        </record>
+
+        <record id="3mit_model_machinery_160" model="model.machinery">
+            <field name="modelo_maquinaria">2100HS</field>
+        </record>
+
+        <record id="3mit_model_machinery_161" model="model.machinery">
+            <field name="modelo_maquinaria">2L53</field>
+        </record>
+
+        <record id="3mit_model_machinery_162" model="model.machinery">
+            <field name="modelo_maquinaria">2L71</field>
+        </record>
+
+        <record id="3mit_model_machinery_163" model="model.machinery">
+            <field name="modelo_maquinaria">3L53</field>
+        </record>
+
+        <record id="3mit_model_machinery_164" model="model.machinery">
+            <field name="modelo_maquinaria">3L71</field>
+        </record>
+
+        <record id="3mit_model_machinery_165" model="model.machinery">
+            <field name="modelo_maquinaria">44045TF220</field>
+        </record>
+
+        <record id="3mit_model_machinery_166" model="model.machinery">
+            <field name="modelo_maquinaria">4700 OFS</field>
+        </record>
+
+        <record id="3mit_model_machinery_167" model="model.machinery">
+            <field name="modelo_maquinaria">4L53</field>
+        </record>
+
+        <record id="3mit_model_machinery_168" model="model.machinery">
+            <field name="modelo_maquinaria">4L71</field>
+        </record>
+
+        <record id="3mit_model_machinery_169" model="model.machinery">
+            <field name="modelo_maquinaria">4L71NA</field>
+        </record>
+
+        <record id="3mit_model_machinery_170" model="model.machinery">
+            <field name="modelo_maquinaria">4R924C</field>
+        </record>
+
+        <record id="3mit_model_machinery_171" model="model.machinery">
+            <field name="modelo_maquinaria">4R924C62</field>
+        </record>
+
+        <record id="3mit_model_machinery_172" model="model.machinery">
+            <field name="modelo_maquinaria">4TNV8</field>
+        </record>
+
+        <record id="3mit_model_machinery_173" model="model.machinery">
+            <field name="modelo_maquinaria">6043TK32</field>
+        </record>
+
+        <record id="3mit_model_machinery_174" model="model.machinery">
+            <field name="modelo_maquinaria">6062GK21</field>
+        </record>
+
+        <record id="3mit_model_machinery_175" model="model.machinery">
+            <field name="modelo_maquinaria">6062HK00</field>
+        </record>
+
+        <record id="3mit_model_machinery_176" model="model.machinery">
+            <field name="modelo_maquinaria">6062HK01</field>
+        </record>
+
+        <record id="3mit_model_machinery_177" model="model.machinery">
+            <field name="modelo_maquinaria">6062HK32</field>
+        </record>
+
+        <record id="3mit_model_machinery_178" model="model.machinery">
+            <field name="modelo_maquinaria">6062HK33</field>
+        </record>
+
+        <record id="3mit_model_machinery_179" model="model.machinery">
+            <field name="modelo_maquinaria">6063HK33</field>
+        </record>
+
+        <record id="3mit_model_machinery_180" model="model.machinery">
+            <field name="modelo_maquinaria">6063HK35</field>
+        </record>
+
+        <record id="3mit_model_machinery_181" model="model.machinery">
+            <field name="modelo_maquinaria">6063HK39</field>
+        </record>
+
+        <record id="3mit_model_machinery_182" model="model.machinery">
+            <field name="modelo_maquinaria">6063HK74</field>
+        </record>
+
+        <record id="3mit_model_machinery_183" model="model.machinery">
+            <field name="modelo_maquinaria">6063HV33</field>
+        </record>
+
+        <record id="3mit_model_machinery_184" model="model.machinery">
+            <field name="modelo_maquinaria">6063HV35</field>
+        </record>
+
+        <record id="3mit_model_machinery_185" model="model.machinery">
+            <field name="modelo_maquinaria">6063HV39</field>
+        </record>
+
+        <record id="3mit_model_machinery_186" model="model.machinery">
+            <field name="modelo_maquinaria">6063HV395</field>
+        </record>
+
+        <record id="3mit_model_machinery_187" model="model.machinery">
+            <field name="modelo_maquinaria">6063HV39R</field>
+        </record>
+
+        <record id="3mit_model_machinery_188" model="model.machinery">
+            <field name="modelo_maquinaria">6063MK33</field>
+        </record>
+
+        <record id="3mit_model_machinery_189" model="model.machinery">
+            <field name="modelo_maquinaria">6063MK35</field>
+        </record>
+
+        <record id="3mit_model_machinery_190" model="model.machinery">
+            <field name="modelo_maquinaria">6063MK74</field>
+        </record>
+
+        <record id="3mit_model_machinery_191" model="model.machinery">
+            <field name="modelo_maquinaria">6063TK33</field>
+        </record>
+
+        <record id="3mit_model_machinery_192" model="model.machinery">
+            <field name="modelo_maquinaria">6063TK35</field>
+        </record>
+
+        <record id="3mit_model_machinery_193" model="model.machinery">
+            <field name="modelo_maquinaria">6064HK33</field>
+        </record>
+
+        <record id="3mit_model_machinery_194" model="model.machinery">
+            <field name="modelo_maquinaria">6064MK33</field>
+        </record>
+
+        <record id="3mit_model_machinery_195" model="model.machinery">
+            <field name="modelo_maquinaria">6064TK33</field>
+        </record>
+
+        <record id="3mit_model_machinery_196" model="model.machinery">
+            <field name="modelo_maquinaria">6067GK60</field>
+        </record>
+
+        <record id="3mit_model_machinery_197" model="model.machinery">
+            <field name="modelo_maquinaria">6067HG6E</field>
+        </record>
+
+        <record id="3mit_model_machinery_198" model="model.machinery">
+            <field name="modelo_maquinaria">6067MK60</field>
+        </record>
+
+        <record id="3mit_model_machinery_199" model="model.machinery">
+            <field name="modelo_maquinaria">6135AFM85</field>
+        </record>
+
+        <record id="3mit_model_machinery_200" model="model.machinery">
+            <field name="modelo_maquinaria">6135SFM85</field>
+        </record>
+
+        <record id="3mit_model_machinery_201" model="model.machinery">
+            <field name="modelo_maquinaria">6BTA CUM</field>
+        </record>
+
+        <record id="3mit_model_machinery_202" model="model.machinery">
+            <field name="modelo_maquinaria">6H1800R85L</field>
+        </record>
+
+        <record id="3mit_model_machinery_203" model="model.machinery">
+            <field name="modelo_maquinaria">6L71</field>
+        </record>
+
+        <record id="3mit_model_machinery_204" model="model.machinery">
+            <field name="modelo_maquinaria">6L71 NA</field>
+        </record>
+
+        <record id="3mit_model_machinery_205" model="model.machinery">
+            <field name="modelo_maquinaria">6L71 TA</field>
+        </record>
+
+        <record id="3mit_model_machinery_206" model="model.machinery">
+            <field name="modelo_maquinaria">6R1600G70S</field>
+        </record>
+
+        <record id="3mit_model_machinery_207" model="model.machinery">
+            <field name="modelo_maquinaria">6R1600G80S</field>
+        </record>
+
+        <record id="3mit_model_machinery_208" model="model.machinery">
+            <field name="modelo_maquinaria">6R183TE93</field>
+        </record>
+
+        <record id="3mit_model_machinery_209" model="model.machinery">
+            <field name="modelo_maquinaria">6R493MB836DB</field>
+        </record>
+
+        <record id="3mit_model_machinery_210" model="model.machinery">
+            <field name="modelo_maquinaria">6R906C</field>
+        </record>
+
+        <record id="3mit_model_machinery_211" model="model.machinery">
+            <field name="modelo_maquinaria">6R906C31</field>
+        </record>
+
+        <record id="3mit_model_machinery_212" model="model.machinery">
+            <field name="modelo_maquinaria">6R926C</field>
+        </record>
+
+        <record id="3mit_model_machinery_213" model="model.machinery">
+            <field name="modelo_maquinaria">6V396TC33</field>
+        </record>
+
+        <record id="3mit_model_machinery_214" model="model.machinery">
+            <field name="modelo_maquinaria">6V501C</field>
+        </record>
+
+        <record id="3mit_model_machinery_215" model="model.machinery">
+            <field name="modelo_maquinaria">6V501C31</field>
+        </record>
+
+        <record id="3mit_model_machinery_216" model="model.machinery">
+            <field name="modelo_maquinaria">6V501C61</field>
+        </record>
+
+        <record id="3mit_model_machinery_217" model="model.machinery">
+            <field name="modelo_maquinaria">6V53</field>
+        </record>
+
+        <record id="3mit_model_machinery_218" model="model.machinery">
+            <field name="modelo_maquinaria">6V71</field>
+        </record>
+
+        <record id="3mit_model_machinery_219" model="model.machinery">
+            <field name="modelo_maquinaria">6V71TA</field>
+        </record>
+
+        <record id="3mit_model_machinery_220" model="model.machinery">
+            <field name="modelo_maquinaria">6V92</field>
+        </record>
+
+        <record id="3mit_model_machinery_221" model="model.machinery">
+            <field name="modelo_maquinaria">6V92 ELECT.</field>
+        </record>
+
+        <record id="3mit_model_machinery_222" model="model.machinery">
+            <field name="modelo_maquinaria">6V92TA</field>
+        </record>
+
+        <record id="3mit_model_machinery_223" model="model.machinery">
+            <field name="modelo_maquinaria">8.2</field>
+        </record>
+
+        <record id="3mit_model_machinery_224" model="model.machinery">
+            <field name="modelo_maquinaria">89820H</field>
+        </record>
+
+        <record id="3mit_model_machinery_225" model="model.machinery">
+            <field name="modelo_maquinaria">89820M</field>
+        </record>
+
+        <record id="3mit_model_machinery_226" model="model.machinery">
+            <field name="modelo_maquinaria">8V1600G70S</field>
+        </record>
+
+        <record id="3mit_model_machinery_227" model="model.machinery">
+            <field name="modelo_maquinaria">8V1600G80S</field>
+        </record>
+
+        <record id="3mit_model_machinery_228" model="model.machinery">
+            <field name="modelo_maquinaria">8V183TE52</field>
+        </record>
+
+        <record id="3mit_model_machinery_229" model="model.machinery">
+            <field name="modelo_maquinaria">8V183TE92</field>
+        </record>
+
+        <record id="3mit_model_machinery_230" model="model.machinery">
+            <field name="modelo_maquinaria">8V183TE93</field>
+        </record>
+
+        <record id="3mit_model_machinery_231" model="model.machinery">
+            <field name="modelo_maquinaria">8V2000C</field>
+        </record>
+
+        <record id="3mit_model_machinery_232" model="model.machinery">
+            <field name="modelo_maquinaria">8V2000G42TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_233" model="model.machinery">
+            <field name="modelo_maquinaria">8V2000G81-TB</field>
+        </record>
+
+        <record id="3mit_model_machinery_234" model="model.machinery">
+            <field name="modelo_maquinaria">8V2000M90</field>
+        </record>
+
+        <record id="3mit_model_machinery_235" model="model.machinery">
+            <field name="modelo_maquinaria">8V2000M92</field>
+        </record>
+
+        <record id="3mit_model_machinery_236" model="model.machinery">
+            <field name="modelo_maquinaria">8V2000M94</field>
+        </record>
+
+        <record id="3mit_model_machinery_237" model="model.machinery">
+            <field name="modelo_maquinaria">8V396TB14</field>
+        </record>
+
+        <record id="3mit_model_machinery_238" model="model.machinery">
+            <field name="modelo_maquinaria">8V396TB34</field>
+        </record>
+
+        <record id="3mit_model_machinery_239" model="model.machinery">
+            <field name="modelo_maquinaria">8V396TB83</field>
+        </record>
+
+        <record id="3mit_model_machinery_240" model="model.machinery">
+            <field name="modelo_maquinaria">8V396TB93</field>
+        </record>
+
+        <record id="3mit_model_machinery_241" model="model.machinery">
+            <field name="modelo_maquinaria">8V396TC32</field>
+        </record>
+
+        <record id="3mit_model_machinery_242" model="model.machinery">
+            <field name="modelo_maquinaria">8V396TC82</field>
+        </record>
+
+        <record id="3mit_model_machinery_243" model="model.machinery">
+            <field name="modelo_maquinaria">8V396TE94</field>
+        </record>
+
+        <record id="3mit_model_machinery_244" model="model.machinery">
+            <field name="modelo_maquinaria">8V4000G60/81</field>
+        </record>
+
+        <record id="3mit_model_machinery_245" model="model.machinery">
+            <field name="modelo_maquinaria">8V4000G80</field>
+        </record>
+
+        <record id="3mit_model_machinery_246" model="model.machinery">
+            <field name="modelo_maquinaria">8V4000M60</field>
+        </record>
+
+        <record id="3mit_model_machinery_247" model="model.machinery">
+            <field name="modelo_maquinaria">8V4000M70</field>
+        </record>
+
+        <record id="3mit_model_machinery_248" model="model.machinery">
+            <field name="modelo_maquinaria">8V502C</field>
+        </record>
+
+        <record id="3mit_model_machinery_249" model="model.machinery">
+            <field name="modelo_maquinaria">8V71</field>
+        </record>
+
+        <record id="3mit_model_machinery_250" model="model.machinery">
+            <field name="modelo_maquinaria">8V71 AN</field>
+        </record>
+
+        <record id="3mit_model_machinery_251" model="model.machinery">
+            <field name="modelo_maquinaria">8V71 TA</field>
+        </record>
+
+        <record id="3mit_model_machinery_252" model="model.machinery">
+            <field name="modelo_maquinaria">8V92</field>
+        </record>
+
+        <record id="3mit_model_machinery_253" model="model.machinery">
+            <field name="modelo_maquinaria">8V92 AN</field>
+        </record>
+
+        <record id="3mit_model_machinery_254" model="model.machinery">
+            <field name="modelo_maquinaria">8V92TA</field>
+        </record>
+
+        <record id="3mit_model_machinery_255" model="model.machinery">
+            <field name="modelo_maquinaria">921 218 0050</field>
+        </record>
+
+        <record id="3mit_model_machinery_256" model="model.machinery">
+            <field name="modelo_maquinaria">BL744</field>
+        </record>
+
+        <record id="3mit_model_machinery_257" model="model.machinery">
+            <field name="modelo_maquinaria">C32</field>
+        </record>
+
+        <record id="3mit_model_machinery_258" model="model.machinery">
+            <field name="modelo_maquinaria">CLT 750</field>
+        </record>
+
+        <record id="3mit_model_machinery_259" model="model.machinery">
+            <field name="modelo_maquinaria">CLT5860</field>
+        </record>
+
+        <record id="3mit_model_machinery_260" model="model.machinery">
+            <field name="modelo_maquinaria">CLT-5860</field>
+        </record>
+
+        <record id="3mit_model_machinery_261" model="model.machinery">
+            <field name="modelo_maquinaria">CLT-750</field>
+        </record>
+
+        <record id="3mit_model_machinery_262" model="model.machinery">
+            <field name="modelo_maquinaria">CPSG55W</field>
+        </record>
+
+        <record id="3mit_model_machinery_263" model="model.machinery">
+            <field name="modelo_maquinaria">CPSG80W</field>
+        </record>
+
+        <record id="3mit_model_machinery_264" model="model.machinery">
+            <field name="modelo_maquinaria">DC09 073A</field>
+        </record>
+
+        <record id="3mit_model_machinery_265" model="model.machinery">
+            <field name="modelo_maquinaria">DC09 074A</field>
+        </record>
+
+        <record id="3mit_model_machinery_266" model="model.machinery">
+            <field name="modelo_maquinaria">DC09 074A</field>
+        </record>
+
+        <record id="3mit_model_machinery_267" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 071A</field>
+        </record>
+
+        <record id="3mit_model_machinery_268" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 072A</field>
+        </record>
+
+        <record id="3mit_model_machinery_269" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 072A 02-13</field>
+        </record>
+
+        <record id="3mit_model_machinery_270" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 073A</field>
+        </record>
+
+        <record id="3mit_model_machinery_271" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 074A</field>
+        </record>
+
+        <record id="3mit_model_machinery_272" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 074A</field>
+        </record>
+
+        <record id="3mit_model_machinery_273" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 076A</field>
+        </record>
+
+        <record id="3mit_model_machinery_274" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 07A</field>
+        </record>
+
+        <record id="3mit_model_machinery_275" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 091A</field>
+        </record>
+
+        <record id="3mit_model_machinery_276" model="model.machinery">
+            <field name="modelo_maquinaria">DC13 093A</field>
+        </record>
+
+        <record id="3mit_model_machinery_277" model="model.machinery">
+            <field name="modelo_maquinaria">DC16 093A</field>
+        </record>
+
+        <record id="3mit_model_machinery_278" model="model.machinery">
+            <field name="modelo_maquinaria">DC16 44A</field>
+        </record>
+
+        <record id="3mit_model_machinery_279" model="model.machinery">
+            <field name="modelo_maquinaria">DC16 45A 1030A</field>
+        </record>
+
+        <record id="3mit_model_machinery_280" model="model.machinery">
+            <field name="modelo_maquinaria">DI09 074M</field>
+        </record>
+
+        <record id="3mit_model_machinery_281" model="model.machinery">
+            <field name="modelo_maquinaria">DI12 062M</field>
+        </record>
+
+        <record id="3mit_model_machinery_282" model="model.machinery">
+            <field name="modelo_maquinaria">DI12 62M</field>
+        </record>
+
+        <record id="3mit_model_machinery_283" model="model.machinery">
+            <field name="modelo_maquinaria">DI13 070M</field>
+        </record>
+
+        <record id="3mit_model_machinery_284" model="model.machinery">
+            <field name="modelo_maquinaria">DI13 070M (de HE, régimen de trabajo ICFN)</field>
+        </record>
+
+        <record id="3mit_model_machinery_285" model="model.machinery">
+            <field name="modelo_maquinaria">DI13 072M</field>
+        </record>
+
+        <record id="3mit_model_machinery_286" model="model.machinery">
+            <field name="modelo_maquinaria">DI13 075M</field>
+        </record>
+
+        <record id="3mit_model_machinery_287" model="model.machinery">
+            <field name="modelo_maquinaria">DI14 74M</field>
+        </record>
+
+        <record id="3mit_model_machinery_288" model="model.machinery">
+            <field name="modelo_maquinaria">DI16 43M</field>
+        </record>
+
+        <record id="3mit_model_machinery_289" model="model.machinery">
+            <field name="modelo_maquinaria">DI16 45M</field>
+        </record>
+
+        <record id="3mit_model_machinery_290" model="model.machinery">
+            <field name="modelo_maquinaria">DI16 70M PDE</field>
+        </record>
+
+        <record id="3mit_model_machinery_291" model="model.machinery">
+            <field name="modelo_maquinaria">DP8962-R</field>
+        </record>
+
+        <record id="3mit_model_machinery_292" model="model.machinery">
+            <field name="modelo_maquinaria">H20</field>
+        </record>
+
+        <record id="3mit_model_machinery_293" model="model.machinery">
+            <field name="modelo_maquinaria">HT4700</field>
+        </record>
+
+        <record id="3mit_model_machinery_294" model="model.machinery">
+            <field name="modelo_maquinaria">HT4700 OFC</field>
+        </record>
+
+        <record id="3mit_model_machinery_295" model="model.machinery">
+            <field name="modelo_maquinaria">HT750DR</field>
+        </record>
+
+        <record id="3mit_model_machinery_296" model="model.machinery">
+            <field name="modelo_maquinaria">MB904</field>
+        </record>
+
+        <record id="3mit_model_machinery_297" model="model.machinery">
+            <field name="modelo_maquinaria">MB906</field>
+        </record>
+
+        <record id="3mit_model_machinery_298" model="model.machinery">
+            <field name="modelo_maquinaria">MBE906 6.4</field>
+        </record>
+
+        <record id="3mit_model_machinery_299" model="model.machinery">
+            <field name="modelo_maquinaria">MD3060</field>
+        </record>
+
+        <record id="3mit_model_machinery_300" model="model.machinery">
+            <field name="modelo_maquinaria">MG540</field>
+        </record>
+
+        <record id="3mit_model_machinery_301" model="model.machinery">
+            <field name="modelo_maquinaria">MH20</field>
+        </record>
+
+        <record id="3mit_model_machinery_302" model="model.machinery">
+            <field name="modelo_maquinaria">NO IDEN</field>
+        </record>
+
+        <record id="3mit_model_machinery_303" model="model.machinery">
+            <field name="modelo_maquinaria">OFS4700</field>
+        </record>
+
+        <record id="3mit_model_machinery_304" model="model.machinery">
+            <field name="modelo_maquinaria">OM 442 A </field>
+        </record>
+
+        <record id="3mit_model_machinery_305" model="model.machinery">
+            <field name="modelo_maquinaria">OM 442 LA.111/1</field>
+        </record>
+
+        <record id="3mit_model_machinery_306" model="model.machinery">
+            <field name="modelo_maquinaria">OM366A</field>
+        </record>
+
+        <record id="3mit_model_machinery_307" model="model.machinery">
+            <field name="modelo_maquinaria">OM441LA</field>
+        </record>
+
+        <record id="3mit_model_machinery_308" model="model.machinery">
+            <field name="modelo_maquinaria">OM442LA</field>
+        </record>
+
+        <record id="3mit_model_machinery_309" model="model.machinery">
+            <field name="modelo_maquinaria">OM501LA E3A/300</field>
+        </record>
+
+        <record id="3mit_model_machinery_310" model="model.machinery">
+            <field name="modelo_maquinaria">OM502LA</field>
+        </record>
+
+        <record id="3mit_model_machinery_311" model="model.machinery">
+            <field name="modelo_maquinaria">OM502LA.E3A/2</field>
+        </record>
+
+        <record id="3mit_model_machinery_312" model="model.machinery">
+            <field name="modelo_maquinaria">OM906LA</field>
+        </record>
+
+        <record id="3mit_model_machinery_313" model="model.machinery">
+            <field name="modelo_maquinaria">OM926LA E3A/2</field>
+        </record>
+
+        <record id="3mit_model_machinery_314" model="model.machinery">
+            <field name="modelo_maquinaria">OM926LA.E3A/1</field>
+        </record>
+
+        <record id="3mit_model_machinery_315" model="model.machinery">
+            <field name="modelo_maquinaria">OM926LA.E3A/2</field>
+        </record>
+
+        <record id="3mit_model_machinery_316" model="model.machinery">
+            <field name="modelo_maquinaria">S40</field>
+        </record>
+
+        <record id="3mit_model_machinery_317" model="model.machinery">
+            <field name="modelo_maquinaria">S60</field>
+        </record>
+
+        <record id="3mit_model_machinery_318" model="model.machinery">
+            <field name="modelo_maquinaria">S6610M</field>
+        </record>
+
+        <record id="3mit_model_machinery_319" model="model.machinery">
+            <field name="modelo_maquinaria">S9810M</field>
+        </record>
+
+        <record id="3mit_model_machinery_320" model="model.machinery">
+            <field name="modelo_maquinaria">ZF 4650A</field>
+        </record>
+
+    </data>
+</odoo>

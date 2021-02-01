@@ -15,6 +15,7 @@ class AccountAccount(models.Model):
     code_alias = fields.Char(size=64, index=True)
     code = fields.Char(size=64, required=True, index=True, translate=True)
 
+
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
         args = args or []

@@ -19,6 +19,7 @@
             </field>
         </record>
 
+
         <record model="ir.actions.act_window" id="import_data_wizard">
             <field name="name">Importar Data de Excel</field>
             <field name="res_model">import.budget.from.excel</field>

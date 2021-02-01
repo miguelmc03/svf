@@ -29,6 +29,7 @@
                 <field name="contact_name"/>
                 <field name="record_customer" invisible="1"/>
                 <field name="record_cliente" invisible="1"/>
+                <field name="created_quotation" invisible="1"/>
             </xpath>
         </field>
      </record>
@@ -48,8 +49,12 @@
             <field name="inherit_id" ref="crm.crm_lead_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">
-                    <button string="Presupuesto Previsto" name="action_simple_new_quotation_2" type="object" class="oe_highlight"
-                        attrs="{'invisible': [('record_customer', '=', True)]}"/>
+                    <button string="Propuesta Prospecto" name="action_simple_new_quotation_2" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|', ('record_customer', '=', True), ('created_quotation', '=', True)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">
+                    <button string="Ver Propuesta" name="action_open_old_quotation" type="object" class="oe_highlight"
+                        attrs="{'invisible': [('created_quotation', '=', False)]}"/>
                 </xpath>
                 <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">
                     <button string="Solicitar Creación Cliente" name="%(action_customer_request)d" type="action" class="oe_highlight"
@@ -57,6 +62,7 @@
                 </xpath>
             </field>
     </record>
+
       <record id="crm_stage_form_inherit" model="ir.ui.view">
         <field name="name">crm stage inherit</field>
         <field name="model">crm.stage</field>

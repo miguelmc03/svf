@@ -7,35 +7,10 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
                     <xpath expr="//page/group/group/field[@name='auto_validation']" position="after">
-                        <field name="inter_automatic" attrs="{'invisible':['|',('rule_type', '!=', 'so_and_po'), ('auto_validation', '!=', True)]}" string="¿Compañía Intermediaria?"/>
-                        <field name="usuarios_correo" attrs="{'invisible':['|',('rule_type', '!=', 'so_and_po'), ('auto_validation', '!=', True)]}" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                        <field name="inter_automatic" attrs="{'invisible':[('rule_type', '!=', 'so_and_po')]}" string="¿Compañía Intermediaria?"/>
                     </xpath>
 
             </field>
         </record>
     </data>
-
-    <record id="template_account_email" model="mail.template">
-        <field name="name">Factura.de.proveedor.email</field>
-        <field name="model_id" ref="account.model_account_move"/>
-        <field name="email_from" >${(object.company_id.email or 'noreply@' + object.company_id.name + '.com')|safe}</field>
-        <field name="email_to" >${object.email_to|safe}</field>
-        <field name="lang">${object.company_id.lang}</field>
-        <field name="report_template" ref="account.account_invoices_without_payment"/>
-        <field name="subject">${object.name}</field>
-        <field name="body_html">
-            <![CDATA[
-                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-                    <p>Buen Día, ${object.name_usuario or ' '}.
-                    <br/><br/>
-                    Sirva la presente para notificar la creación de la factura  ${object.name or ' '} con fecha ${object.date or ' '} generada por la compañia ${object.company_id.name or ' '}
-                    <br/><br/>
-                    Saludos Coordiales.
-                    <br/><br/>
-                    </p>
-                </div>
-            ]]>
-        </field>
-    </record>
-
 </odoo>

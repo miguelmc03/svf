@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="3mit_serie_machinery_1" model="serie.machinery">
+            <field name="n_serial">40</field>
+        </record>
+
+        <record id="3mit_serie_machinery_2" model="serie.machinery">
+            <field name="n_serial">50</field>
+        </record>
+
+        <record id="3mit_serie_machinery_3" model="serie.machinery">
+            <field name="n_serial">53</field>
+        </record>
+
+        <record id="3mit_serie_machinery_4" model="serie.machinery">
+            <field name="n_serial">60</field>
+        </record>
+
+        <record id="3mit_serie_machinery_5" model="serie.machinery">
+            <field name="n_serial">71</field>
+        </record>
+
+        <record id="3mit_serie_machinery_6" model="serie.machinery">
+            <field name="n_serial">92</field>
+        </record>
+
+        <record id="3mit_serie_machinery_7" model="serie.machinery">
+            <field name="n_serial">99</field>
+        </record>
+
+        <record id="3mit_serie_machinery_8" model="serie.machinery">
+            <field name="n_serial">149</field>
+        </record>
+
+        <record id="3mit_serie_machinery_9" model="serie.machinery">
+            <field name="n_serial">183</field>
+        </record>
+
+        <record id="3mit_serie_machinery_10" model="serie.machinery">
+            <field name="n_serial">331</field>
+        </record>
+
+        <record id="3mit_serie_machinery_11" model="serie.machinery">
+            <field name="n_serial">396</field>
+        </record>
+
+        <record id="3mit_serie_machinery_12" model="serie.machinery">
+            <field name="n_serial">493</field>
+        </record>
+
+        <record id="3mit_serie_machinery_13" model="serie.machinery">
+            <field name="n_serial">538</field>
+        </record>
+
+        <record id="3mit_serie_machinery_14" model="serie.machinery">
+            <field name="n_serial">652</field>
+        </record>
+
+        <record id="3mit_serie_machinery_15" model="serie.machinery">
+            <field name="n_serial">750</field>
+        </record>
+
+        <record id="3mit_serie_machinery_16" model="serie.machinery">
+            <field name="n_serial">956</field>
+        </record>
+
+        <record id="3mit_serie_machinery_17" model="serie.machinery">
+            <field name="n_serial">1600</field>
+        </record>
+
+        <record id="3mit_serie_machinery_18" model="serie.machinery">
+            <field name="n_serial">1800</field>
+        </record>
+
+        <record id="3mit_serie_machinery_19" model="serie.machinery">
+            <field name="n_serial">2000</field>
+        </record>
+
+        <record id="3mit_serie_machinery_20" model="serie.machinery">
+            <field name="n_serial">4000</field>
+        </record>
+
+        <record id="3mit_serie_machinery_21" model="serie.machinery">
+            <field name="n_serial">4700</field>
+        </record>
+
+        <record id="3mit_serie_machinery_22" model="serie.machinery">
+            <field name="n_serial">6135</field>
+        </record>
+
+        <record id="3mit_serie_machinery_23" model="serie.machinery">
+            <field name="n_serial">9000</field>
+        </record>
+
+        <record id="3mit_serie_machinery_24" model="serie.machinery">
+            <field name="n_serial">9800</field>
+        </record>
+
+        <record id="3mit_serie_machinery_25" model="serie.machinery">
+            <field name="n_serial">8.2L</field>
+        </record>
+
+        <record id="3mit_serie_machinery_26" model="serie.machinery">
+            <field name="n_serial">C32</field>
+        </record>
+
+        <record id="3mit_serie_machinery_27" model="serie.machinery">
+            <field name="n_serial">DC09</field>
+        </record>
+
+        <record id="3mit_serie_machinery_28" model="serie.machinery">
+            <field name="n_serial">DC13</field>
+        </record>
+
+        <record id="3mit_serie_machinery_29" model="serie.machinery">
+            <field name="n_serial">DC16</field>
+        </record>
+
+        <record id="3mit_serie_machinery_30" model="serie.machinery">
+            <field name="n_serial">DI09</field>
+        </record>
+
+        <record id="3mit_serie_machinery_31" model="serie.machinery">
+            <field name="n_serial">DI12</field>
+        </record>
+
+        <record id="3mit_serie_machinery_32" model="serie.machinery">
+            <field name="n_serial">DI13</field>
+        </record>
+
+        <record id="3mit_serie_machinery_33" model="serie.machinery">
+            <field name="n_serial">DI16</field>
+        </record>
+
+        <record id="3mit_serie_machinery_34" model="serie.machinery">
+            <field name="n_serial">OM441LA</field>
+        </record>
+
+        <record id="3mit_serie_machinery_35" model="serie.machinery">
+            <field name="n_serial">OM500</field>
+        </record>
+
+        <record id="3mit_serie_machinery_36" model="serie.machinery">
+            <field name="n_serial">OM900</field>
+        </record>
+
+        <record id="3mit_serie_machinery_37" model="serie.machinery">
+            <field name="n_serial">P96</field>
+        </record>
+
+        <record id="3mit_serie_machinery_38" model="serie.machinery">
+            <field name="n_serial">(1996- )</field>
+        </record>
+    </data>
+</odoo>

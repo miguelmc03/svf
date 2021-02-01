@@ -29,11 +29,13 @@ class Lead2OpportunityPartner(models.TransientModel):
 #     def _value_pc(self):
 #         for record in self:
 #             record.value2 = float(record.value) / 100
+
 class Lead(models.Model):
     _inherit = "crm.lead"
 
     record_customer = fields.Boolean(default=False)
     record_cliente = fields.Boolean(default=False)
+    created_quotation = fields.Boolean(default=False)
 
     def action_set_won_rainbowman(self):
         self.record_customer = True
@@ -71,7 +73,18 @@ class Lead(models.Model):
         return action
 
     def action_simple_new_quotation_2(self):
+        self.created_quotation = True
         action = self.env.ref("3mit_changes_crm.sale_action_quotations_new").read()[0]
+        return action
+
+    def action_open_old_quotation(self):
+        action = self.env.ref("3mit_changes_crm.action_orders").read()[0]
+        action['domain'] = [('opportunity_id', '=', self.id)]
+        quotations = self.env['sale.simple.order'].search([
+            ('opportunity_id', '=', self.id)
+        ])
+        action['views'] = [(self.env.ref('3mit_changes_crm.view_order_form').id, 'form')]
+        action['res_id'] = quotations.id
         return action
 
 class Stage(models.Model):

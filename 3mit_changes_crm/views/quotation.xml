@@ -421,7 +421,7 @@
         <field name="model">sale.simple.order</field>
         <field name="priority">2</field>
         <field name="arch" type="xml">
-            <tree string="Presupuestos Previstos" decoration-muted="state=='cancel'" multi_edit="1">
+            <tree string="Propuestas Prospectos" decoration-muted="state=='cancel'" multi_edit="1">
                 <field name="message_needaction" invisible="1"/>
                 <field name="name" string="Número de Presupuesto" readonly="1"/>
                 <field name="date_order" string="Fecha presupuesto"/>
@@ -475,7 +475,7 @@
     <!-- This menu is display in CRM app when sale is installed-->
     <menuitem
         id="sale_simple_order_menu_quotations_crm"
-        name="Presupuestos Previstos"
+        name="Propuestas Prospectos"
         action="3mit_changes_crm.action_orders"
         parent="crm.crm_menu_sales"
         sequence="3"/>

@@ -13,6 +13,7 @@ INV_TYPE_MAP = {
 }
 
 
+
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
@@ -27,6 +28,7 @@ class AccountMoveLine(models.Model):
             ana_account = ana_accounts[INV_TYPE_MAP[inv_type]]
             self.analytic_account_id = ana_account.id
         return res
+
 
     @api.model_create_multi
     def create(self, vals_list):

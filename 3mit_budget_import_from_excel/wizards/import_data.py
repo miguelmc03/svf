@@ -104,6 +104,7 @@ class ImportData(models.TransientModel):
         else:
             return True
 
+
     def createLine(self, budgetId, accountId, date_from, date_to, paid_date, amount):
         self.crossovered_budget_line.append(
             (0, 0, {
