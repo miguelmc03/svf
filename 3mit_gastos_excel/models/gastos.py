@@ -73,7 +73,7 @@ class GastosCargaExcel(models.TransientModel):
                     limit=1)
                 if not account_id:
                     raise UserError('No se encuentra la cuenta %s' % (lis[5]))
-            employee_id = self.env['hr.employee'].search([('identification_id', '=', lis[1]), ('company_id', '=', company_id.id)], limit=1)
+            employee_id = self.env['hr.employee'].search([('identification_id', '=', str(lis[1])), ('company_id', '=', company_id.id)], limit=1)
             if not employee_id:
                 raise UserError('No se encuentra al empleado %s' % (lis[1]))
             if lis[2] == 'L':

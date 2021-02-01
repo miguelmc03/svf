@@ -31,7 +31,7 @@ class Marcas(models.Model):
 class HerenciaProyecto(models.Model):
     _inherit = "project.project"
     
-    marca_id = fields.Many2one('marcas.model')
+    marca_id = fields.Many2one('marcas.model', required=True)
 
     @api.model
     def create(self, vals):
