@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_proyect_marca" model="ir.ui.view">
+            <field name="name">marcas a proyectos</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+            <field name="priority">24</field>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="marca_id" string="Marca"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_proyect_marca_form" model="ir.ui.view">
+            <field name="name">marcas a proyectos form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="before">
+                    <field name="id" string="Nro. de proyecto" readonly="1"/>
+                    <field name="marca_id" string="Marca"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="project_kanban_inherited_camps" model="ir.ui.view">
+        <field name="name">project.kanban.inherited.camps</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="priority">24</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_primary')]" position="after">
+                <div>
+                    <span class="o_label">Nro. de proyecto:</span>
+                    <field name="id" readonly="1"/>
+                </div>
+                <div>
+                    <span class="o_label">Marca:</span>
+                    <field name="marca_id"  readonly="1"/>
+                </div>
+            </xpath>
+        </field>
+        <field name="groups_id" eval="[(4, ref('helpdesk.group_helpdesk_user'))]"/>
+        </record>
+
+        <record id="hr_expense_form_view_inherit_camps" model="ir.ui.view">
+        <field name="name">hr.expense.form.inherit.camps</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reference']" position="before">
+                <field name="uuid" string="UUID"/>
+            </xpath>
+        </field>
+        </record>
+
+        <record id="sale_order_inherit_marca" model="ir.ui.view">
+            <field name="name">sale.order.inherit.marca</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="marca_id" string="Marca" />
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
