@@ -13,7 +13,7 @@
                            attrs="{'invisible': [('ticket_id', '=', False)]}"
                     />
                 </xpath>
-
+<!--
                 <xpath expr="//field[@name='operations']/form/group/group/field[@name='price_unit']" position="replace">
                     <field name="price_unit"
                            string="Costo"
@@ -35,6 +35,7 @@
                            string="Costo"
                     />
                 </xpath>
+-->
             </field>
     </record>
   </data>
