@@ -124,6 +124,10 @@ class GastosCargaExcel(models.TransientModel):
             }
             vb = self.env['hr.expense'].create(dic)
             vb.action_submit_expenses()
+            diario_id = self.env['account.journal'].search([('code', '=', 'SIVAL')],
+                                                            limit=1)
+            if diario_id:
+                vb.sheet_id.bank_journal_id = diario_id
             vb.sheet_id.action_submit_sheet()
             vb.sheet_id.approve_expense_sheets()
             if lis[2] == 'L':
