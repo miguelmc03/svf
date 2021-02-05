@@ -11,5 +11,28 @@
         </field>
       </field>
     </record>
+
+    <record id="quality_alert_team_inherit" model="ir.ui.view">
+      <field name="name">quality.team.inherit</field>
+      <field name="model">quality.alert.team</field>
+      <field name="inherit_id" ref="quality_control.quality_alert_team_view_form"/>
+      <field name="arch" type="xml">
+        <field name="company_id" position="after">
+          <field name="es_core" string="Es Core:"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+      <field name="name">sale.order.inherit</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <field name="payment_term_id" position="after">
+          <field name="refund_core" string="Devolución de Core"/>
+        </field>
+      </field>
+    </record>
+
   </data>
 </odoo>

@@ -1,0 +1,112 @@
+<odoo>
+  <data>
+      <record id="stock_picking_type_inherit" model="ir.ui.view">
+        <field name="name">stock_picking_inherit</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <field name="warehouse_id" position='after'>
+                <field name="es_core" string="Operación de Cores" required="1"/>
+                <field name="account_debit_id" attrs="{'invisible': [('es_core','=', 'no')]}"/>
+                <field name="account_credit_id" attrs="{'invisible': [('es_core','=', 'no')]}" />
+                <field name="journal_advanced_id" attrs="{'invisible': [('es_core','=', 'no')]}" />
+          </field>
+        </field>
+      </record>
+
+      <record id="stock_picking_inherit_two" model="ir.ui.view">
+        <field name="name">stock_picking_2_inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//notebook//page[@name='note']" position="after">
+                <page string="Valoración" attrs="{'invisible': [('refund_flag', '=', False)]}">
+                    <field name="valoracion_ids">
+                        <tree string="Valoración de los productos" editable="button" create="0" >
+                            <field name="product_id"/>
+                            <field name="amount"/>
+                            <field name="currency_id" invisible="True"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <field name="partner_id" position='after'>
+                <field name="refund_flag" string="Operación para Core" readonly="1"/>
+                <field name="es_devuelto" invisible="1"/>
+            </field>
+            <field name="owner_id" position='after'>
+                <field name="code" invisible="1"/>
+                <field name="invoice_id" string="Factura" attrs="{'required': [('refund_flag', '=', True), ('code', '=', 'DVCC')], 'invisible': ['|', ('refund_flag', '=', False), ('code', '!=', 'DVCC' )]}" options="{'no_create': True, 'no_open': True}" domain="[('type', '=', 'out_invoice'),('state','=','posted')]"/>
+                <field name="associated_stock_id" string="Transferencia Devolución Asociada" attrs="{'required': [('refund_flag', '=', True), ('code', '=', 'RCF')], 'invisible': ['|', ('refund_flag', '=', False), ('code', '!=', 'RCF' )]}" domain="[('code', '=', 'DVCC')]"/>
+            </field>
+            <button name="button_validate" position='after'>
+                 <button name="automatic_book_entry" attrs="{'invisible': ['|', ('state', 'not in', 'done'), ('code', '!=', 'RCF')]}" string="Asiento NV" type="object" class="oe_highlight" groups="base.group_user"/>
+            </button>
+        </field>
+      </record>
+      <record id="view_account_move_reversal_inherit" model="ir.ui.view">
+        <field name="name">account.move.reversal.form.inherit</field>
+        <field name="model">account.move.reversal</field>
+        <field name="inherit_id" ref="account.view_account_move_reversal"/>
+        <field name="arch" type="xml">
+            <field name="journal_id" position='after'>
+                <field name="is_core" string="Nota de Crédito para Core" />
+                <field name="es_devolucion" string="Nota de Débito para Core" />
+          </field>
+        </field>
+      </record>
+      <record id="set_up_core" model="ir.ui.view">
+            <field name="name">core.settings.form</field>
+            <field name="model">core.settings</field>
+            <field name="arch" type="xml">
+                <form string="Cuentas devolución Core">
+                    <field name="name" string="Nombre"></field>
+                    <field name="account" string="Cuenta"></field>
+
+                </form>
+            </field>
+      </record>
+      <record id="set_up_core_view" model="ir.ui.view">
+            <field name="name">core.settings.tree</field>
+            <field name="model">core.settings</field>
+            <field name="arch" type="xml">
+                <tree string="Cuentas devolución Core">
+                    <field name="name" string="Nombre"></field>
+                    <field name="account" string="Cuenta"></field>
+                </tree>
+            </field>
+      </record>
+        <record model="ir.actions.act_window" id="action_set_up_core">
+            <field name="name">Cuentas Core</field>
+            <field name="res_model">core.settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+      <menuitem
+            action="action_set_up_core"
+            name="Configurar Core"
+            id="menu_action_set_up_core_form"
+            parent="account.account_invoicing_menu" sequence="3"/>
+
+      <record id="sale_order_form_inherit" model="ir.ui.view">
+      <field name="name">sale.order.inherit</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <field name="refund_core" position="after">
+          <field name="associated_stock_id" string="Transferencia Devolución Asociada" attrs="{'required': [('refund_core', '=', 'si')], 'invisible': [('refund_core', '=', 'no')]}" domain="[('code', '=', 'DVCC'), ('es_devuelto', '=', 'no')]"/>
+        </field>
+      </field>
+    </record>
+      <record id="account_invoice_move_refund_id" model="ir.ui.view">
+            <field name="name">account.invoice.refund</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="retorno_fabrica" attrs="{'invisible': [('type', 'not in', 'out_invoice')], 'required': [('type', 'in', 'out_invoice')]}"/>
+                </xpath>
+            </field>
+        </record>
+  </data>
+</odoo>
