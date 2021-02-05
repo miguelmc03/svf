@@ -289,15 +289,15 @@ class AccountMoveInherit(models.Model):
         res = super(AccountMoveInherit, self).action_post()
         if self.es_devolucion:
             self.retorno_fabrica = 'no'
-            self.write({'state': 'draft'})
-            self.with_context(check_move_validity=False).quitar_llineas()
+        #    self.write({'state': 'draft'})
+         #   self.with_context(check_move_validity=False).quitar_llineas()
             self.automatic_book_entry()
         if self.retorno_fabrica == 'si':
             '''self.write({'state': 'draft'})'''
             #self.with_context(check_move_validity=False).sudo().quitar_llineas_2()
         if self.is_core and self.invoice_origin:
-            self.write({'state': 'draft'})
-            self.with_context(check_move_validity=False).quitar_llineas()
+            '''self.write({'state': 'draft'})'''
+         #   self.with_context(check_move_validity=False).quitar_llineas()
         return res
 
     def automatic_book_entry(self):

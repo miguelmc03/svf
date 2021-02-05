@@ -37,7 +37,7 @@
             <field name="owner_id" position='after'>
                 <field name="code" invisible="1"/>
                 <field name="invoice_id" string="Factura" attrs="{'required': [('refund_flag', '=', True), ('code', '=', 'DVCC')], 'invisible': ['|', ('refund_flag', '=', False), ('code', '!=', 'DVCC' )]}" options="{'no_create': True, 'no_open': True}" domain="[('type', '=', 'out_invoice'),('state','=','posted')]"/>
-                <field name="associated_stock_id" string="Transferencia Devolución Asociada" attrs="{'required': [('refund_flag', '=', True), ('code', '=', 'RCF')], 'invisible': ['|', ('refund_flag', '=', False), ('code', '!=', 'RCF' )]}" domain="[('code', '=', 'DVCC')]"/>
+                <field name="associated_stock_id" string="Transferencia Devolución Asociada" attrs="{'required': [('refund_flag', '=', True), ('code', '=', 'RCF')], 'invisible': ['|', ('refund_flag', '=', False), ('code', '!=', 'RCF' )]}" domain="[('code', '=', 'DVCC')]" />
             </field>
             <button name="button_validate" position='after'>
                  <button name="automatic_book_entry" attrs="{'invisible': ['|', ('state', 'not in', 'done'), ('code', '!=', 'RCF')]}" string="Asiento NV" type="object" class="oe_highlight" groups="base.group_user"/>
@@ -94,7 +94,7 @@
       <field name="inherit_id" ref="sale.view_order_form"/>
       <field name="arch" type="xml">
         <field name="refund_core" position="after">
-          <field name="associated_stock_id" string="Transferencia Devolución Asociada" attrs="{'required': [('refund_core', '=', 'si')], 'invisible': [('refund_core', '=', 'no')]}" domain="[('code', '=', 'DVCC'), ('es_devuelto', '=', 'no')]"/>
+          <field name="associated_stock_id" string="Transferencia Devolución Asociada" attrs="{'required': [('refund_core', '=', 'si')], 'invisible': [('refund_core', '=', 'no')]}" domain="[('code', '=', 'DVCC'), ('es_devuelto', '=', 'no')]" widget="many2many_tags" options="{'no_create': True, 'no_open': True}"/>
         </field>
       </field>
     </record>
