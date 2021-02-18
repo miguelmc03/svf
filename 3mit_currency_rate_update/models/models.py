@@ -84,6 +84,7 @@ class Currency(models.Model):
         return tipoCambios
 
 
+
     def refresh_currency(self, tipoCambios):
         Currency = self.env['res.currency']
         CurrencyRate = self.env['res.currency.rate']

@@ -12,6 +12,7 @@
             </field>
         </record>
 
+
         <record id="view_account_alias_list" model="ir.ui.view">
             <field name="name">account.account.alias.list</field>
             <field name="model">account.account</field>

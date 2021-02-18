@@ -32,6 +32,7 @@ class ProductTemplate(models.Model):
         }
 
 
+
 class ProductCategory(models.Model):
     _inherit = "product.category"
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+
         <record id="view_crossovered_budget_import_excel" model="ir.ui.view">
             <field name="name">crossovered_budget_import_excel</field>
             <field name="model">crossovered.budget</field>

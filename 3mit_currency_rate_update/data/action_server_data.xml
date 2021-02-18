@@ -18,6 +18,7 @@
         </record>
 
     </data>
+
     <data>
         <record id="bmx_token" model="ir.config_parameter">
             <field name="key">bmx.token</field>
