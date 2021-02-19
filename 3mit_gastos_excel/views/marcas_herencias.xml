@@ -63,7 +63,8 @@
             <field name="inherit_id" ref="sale.view_order_form" />
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='payment_term_id']" position="after">
-                    <field name="marca_id" string="Marca" />
+                    <field name="marca_id" string="Marca" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="analytic_group_id" string="Grupo analítico" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                 </xpath>
             </field>
         </record>
