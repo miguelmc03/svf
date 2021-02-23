@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_3mit_ingreso_credito_diferido_registro_pagos_diferidos,3mit_ingreso_credito_diferido.registro_pagos_diferidos,model_registro_pagos_diferidos,,1,1,1,1
+access_3mit_ingreso_credito_diferido_pagos_diferidos_lines,3mit_ingreso_credito_diferido.pagos_diferidos_lines,model_pagos_diferidos_lines,,1,1,1,1
