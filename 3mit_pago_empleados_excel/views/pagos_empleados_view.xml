@@ -1,0 +1,138 @@
+<odoo>
+
+  <data>
+
+     <record id="registro_pago_empleados_form" model="ir.ui.view">
+                <field name="name">registro.pagos.empleados.form</field>
+                <field name="model">registro.pagos.empleados</field>
+                <field name="arch" type="xml">
+                    <form string="Registro de pago de empleados">
+                        <header>
+                            <button name="action_confirm" string="Confirmar" type="object" class="on_highlight" attrs="{'invisible': [('state', 'in', ('1', '2'))]}"/>
+<!--                            <button name="action_asignar" string="Asignar a costo de venta" type="object" class="on_highlight" attrs="{'invisible': [('state', 'in', ('0','2'))]}"/>-->
+                            <button name="%(action_wizard_pagos)d" string="Importar Excel" type="action" class="on_highlight" attrs="{'invisible': [('state', 'in', ('1','2'))]}"/>
+                            <field name="state" widget="statusbar" statusbar_visible="0,1,2" statusbar_colors="{'active':'blue'}" string="Estado"/>
+
+                        </header>
+                        <sheet>
+                            <div class="oe_button_box" name="button_box">
+                                <button type="object"
+                                   name="action_view_movimientos_ids"
+                                   class="oe_stat_button"
+                                   icon="fa-bar-chart-o"
+                                   string="Apuntes Contables"
+                                   attrs="{'invisible': [('state', 'in', ('0'))]}">
+                                  <field name="movimiento_contable" invisible="1"/>
+                               </button>
+<!--                                 <button type="object"-->
+<!--                                   name="action_view_proyectos_ids"-->
+<!--                                   class="oe_stat_button"-->
+<!--                                   icon="fa-pinterest"-->
+<!--                                   string="Apuntes costo de ventas"-->
+<!--                                   attrs="{'invisible': [('state', 'in', ('0','1'))]}">-->
+<!--                                  <field name="movimiento_proyectos" invisible="1"/>-->
+<!--                               </button>-->
+                            </div>
+                            <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre del registro" required="True" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>
+                            </h1>
+                            </div>
+                            <group col="2">
+                                <label for="date_from" string="Período"/>
+                                <div>
+                                    <field name="date_from" class="oe_inline" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/> - <field name="date_to" class="oe_inline" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>
+                                </div>
+                            </group>
+<!--                            <group string="Cuentas Contables" col="4">-->
+<!--                                <field name="account_id_uno" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>-->
+<!--                                <field name="account_id_dos" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>-->
+<!--                                <field name="bank_journal_id" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>-->
+<!--                            </group>-->
+                            <group string="Información" col="4">
+                                <field name="bank_journal_id" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>
+                                <field name="date" string="Fecha de registro" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>
+                                <field name="company_id" />
+                            </group>
+                             <div class="col-sm text-center">
+                                 <h2> </h2>
+                                <h2>Registro de pagos</h2>
+                            </div>
+                                 <field name="pagos_ids"
+                                    widget="section_and_note_one2many"
+                                    attrs="{'readonly': [('state', 'in', ('1','2'))]}">
+
+                                </field>
+
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+        <record model="ir.rule" id="record_not_shared_multi_company_rule_pagos">
+            <field name="name">Non Shared Records:model</field>
+            <field name="model_id" ref="3mit_pago_empleados_excel.model_registro_pagos_empleados"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+               [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+    <record id="registro_pago_empleados_tree" model="ir.ui.view">
+        <field name="name">registro.pagos.empleados.tree</field>
+        <field name="model">registro.pagos.empleados</field>
+        <field name="arch" type="xml">
+            <tree string="Empleados" default_order="id desc">
+                <field name="name" string="Nombre" />
+<!--                <field name="account_id_uno" string="Cuenta uno"/>-->
+<!--                <field name="account_id_dos" string="Cuenta dos"/>-->
+                <field name="date_from" string="Fecha inicio"/>
+                <field name="date_to" string="Fecha fin"/>
+                <field name="date" string="Fecha de registro"/>
+                <field name="state" string="Estado"/>
+                <field name="company_id" string="Compañia" />
+            </tree>
+        </field>
+    </record>
+
+      <record id="registro_pago_empleados_lines_tree" model="ir.ui.view">
+        <field name="name">registro.pagos.empleados.lines.tree</field>
+        <field name="model">pagos.empleados.lines</field>
+        <field name="arch" type="xml">
+            <tree string="Empleados pagos" editable="bottom" >
+                <field name="account_id" string="Cuenta" options="{'no_create': True}"/>
+                <field name="monto_pago" string="Monto pago"/>
+                <field name="tipo_monto" string="Tipo"/>
+                <field name="referencia" string="Referencia"/>
+                <field name="partner_id"/>
+                <field name="ctta_analitica_id" string="Cuenta analítica"/>
+                <field name="company_id" string="Compañia" invisible="1"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="act_pagos_empleados_form" model="ir.actions.act_window">
+        <field name="name">Registro de Pago Empleados</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">registro.pagos.empleados</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+         id="action_pagos_empleados"
+         parent="hr_payroll.menu_hr_payroll_root"
+         name="Pagos Empleados"
+         sequence="50"
+    />
+    <menuitem
+         id="action_pagos_empleados_data"
+         parent="action_pagos_empleados"
+         action="act_pagos_empleados_form"
+         name="Registrar Nóminas"
+         sequence="0"
+    />
+
+  </data>
+</odoo>

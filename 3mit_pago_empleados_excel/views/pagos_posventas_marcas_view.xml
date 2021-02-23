@@ -1,0 +1,121 @@
+<odoo>
+
+  <data>
+
+     <record id="registro_pago_posventa_form" model="ir.ui.view">
+                <field name="name">registro.pagos.posventa.form</field>
+                <field name="model">registro.pagos.posventa</field>
+                <field name="arch" type="xml">
+                    <form string="Registro de costos de venta">
+                        <header>
+                            <button name="action_confirm" string="Calcular" type="object" class="on_highlight" attrs="{'invisible': [('state', 'in', ('1', '2'))]}"/>
+                            <button name="action_asignar" string="Asignar a costo de venta" type="object" class="on_highlight" attrs="{'invisible': [('state', 'in', ('0','2'))]}"/>
+                            <field name="state" widget="statusbar" statusbar_visible="0,1,2" statusbar_colors="{'active':'blue'}" string="Estado"/>
+
+                        </header>
+                        <sheet>
+                            <div class="oe_button_box" name="button_box">
+                                <button type="object"
+                                   name="action_view_movimientos_ids"
+                                   class="oe_stat_button"
+                                   icon="fa-pinterest"
+                                   string="Apuntes Contables"
+                                   attrs="{'invisible': [('state', '!=', ('2'))]}">
+                                  <field name="movimiento_proyectos" invisible="1"/>
+                               </button>
+
+                            </div>
+                            <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre del registro" required="True" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>
+                            </h1>
+                            </div>
+                            <group col="2">
+                                <label for="date_from" string="Período de pago"/>
+                                <div>
+                                    <field name="date_from" class="oe_inline" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/> - <field name="date_to" class="oe_inline" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>
+                                </div>
+                            </group>
+<!--                            <group string="Cuentas Contables" col="4">-->
+<!--                                <field name="account_id_uno" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>-->
+<!--                                <field name="account_id_dos" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>-->
+<!--                                <field name="bank_journal_id" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>-->
+<!--                            </group>-->
+                            <group string="Información" col="4">
+                                <field name="bank_journal_id" attrs="{'readonly': [('state', 'in', ('1','2'))]}"/>
+                                <field name="date" string="Fecha de registro" readonly="1"/>
+                                <field name="company_id" />
+                            </group>
+                             <div class="col-sm text-center">
+                                 <h2> </h2>
+                                <h2>Registros costo de venta</h2>
+                            </div>
+                                 <field name="pagos_ids"
+                                    widget="section_and_note_one2many"
+                                    attrs="{'readonly': [('state', 'in', ('1','2'))]}">
+
+                                </field>
+
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+        <record model="ir.rule" id="record_not_shared_multi_company_rule_posventa">
+            <field name="name">Non Shared Records:model</field>
+            <field name="model_id" ref="3mit_pago_empleados_excel.model_registro_pagos_posventa"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+               [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+    <record id="registro_pago_posventa_tree" model="ir.ui.view">
+        <field name="name">registro.pagos.posventa.tree</field>
+        <field name="model">registro.pagos.posventa</field>
+        <field name="arch" type="xml">
+            <tree string="Información" default_order="id desc">
+                <field name="name" string="Nombre" />
+                <field name="date_from" string="Fecha inicio"/>
+                <field name="date_to" string="Fecha fin"/>
+                <field name="date" string="Fecha" />
+                <field name="state" string="Estado" />
+                <field name="company_id" string="Compañia" />
+            </tree>
+        </field>
+    </record>
+
+      <record id="registro_pago_posventa_lines_tree" model="ir.ui.view">
+        <field name="name">registro.pagos.posventa.lines.tree</field>
+        <field name="model">pagos.posventa.lines</field>
+        <field name="arch" type="xml">
+            <tree string="Información" editable="bottom" create="0">
+                <field name="proyecto_id"/>
+                <field name="marca_id"/>
+                <field name="horas"/>
+                <field name="monto"/>
+                <field name="total_gastos" invisible="1"/>
+                <field name="date" invisible="1"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="act_pagos_posventa_form" model="ir.actions.act_window">
+        <field name="name">Registro de costo de venta</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">registro.pagos.posventa</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+         id="action_pagos_posventa"
+         parent="3mit_pago_empleados_excel.action_pagos_empleados"
+         action="act_pagos_posventa_form"
+         name="Costos de venta"
+         sequence="50"
+    />
+
+  </data>
+</odoo>
