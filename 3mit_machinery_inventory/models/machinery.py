@@ -132,10 +132,10 @@ class MachineryInventory(models.Model):
     partner_id = fields.Many2one('res.partner', string="Propietario")
     maquinaria = fields.Many2many("machinery.registry", string="Maquinaria", store=True, required=True)
     country_id = fields.Many2one('res.country', string="País", required=True)
-    ciudad = fields.Char(string="Ciudad", required=True)
+    city_id = fields.Many2one('res.city', string="Ciudad", required=True)
     calle = fields.Char(string="Calle ubicación de la maquinaria")
     calle2 = fields.Char(string="Calle aux. ubicación de la maquinaria")
-    estado = fields.Many2one('res.country.state', string="Estado/provincia maquinaria", required=True)
+    state_id = fields.Many2one('res.country.state', string="Estado/provincia maquinaria", required=True)
     zip = fields.Char(string="Código postal")
 
 
@@ -258,8 +258,8 @@ class SaleOrder(models.Model):
     _status_id = fields.Boolean(string="Presupuesto de servicio a equipos", default=False)
     un_client = fields.Boolean(string="¿Cliente registrado?", default=True)
 
-    machinery_inventory = fields.Many2one('machinery.inventory', string="Propietario de la máquina")
-    machinery_to_maintenance = fields.Many2one("machinery.registry", string="Maquinaria")
+    machinery_inventory = fields.Many2one('machinery.inventory', string="Propietario del equipo")
+    machinery_to_maintenance = fields.Many2one("machinery.registry", string="Equipo")
     tipo_servicio = fields.Many2many('service.machinery', string="Tipo de servicio")
 
 
