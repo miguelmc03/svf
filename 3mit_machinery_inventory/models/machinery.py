@@ -132,10 +132,10 @@ class MachineryInventory(models.Model):
     partner_id = fields.Many2one('res.partner', string="Propietario")
     maquinaria = fields.Many2many("machinery.registry", string="Maquinaria", store=True, required=True)
     country_id = fields.Many2one('res.country', string="País", required=True)
-    ciudad = fields.Char(string="Ciudad", required=True)
+    city_id = fields.Many2one('res.city', string="Ciudad", required=True)
     calle = fields.Char(string="Calle ubicación de la maquinaria")
     calle2 = fields.Char(string="Calle aux. ubicación de la maquinaria")
-    estado = fields.Many2one('res.country.state', string="Estado/provincia maquinaria", required=True)
+    state_id = fields.Many2one('res.country.state', string="Estado/provincia maquinaria", required=True)
     zip = fields.Char(string="Código postal")
 
 

@@ -28,8 +28,6 @@
     'website': "https://www.3mit.dev/",
     'category': 'Inventario',
     'version': '1.5.6',
-
-    # Cualquier módulo necesario para que este funcione correctamente
     'depends': ['base', 'stock', 'contacts', 'sale_management', 'sale_timesheet'],
 
     'data': [
