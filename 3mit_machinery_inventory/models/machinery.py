@@ -258,8 +258,8 @@ class SaleOrder(models.Model):
     _status_id = fields.Boolean(string="Presupuesto de servicio a equipos", default=False)
     un_client = fields.Boolean(string="¿Cliente registrado?", default=True)
 
-    machinery_inventory = fields.Many2one('machinery.inventory', string="Propietario de la máquina")
-    machinery_to_maintenance = fields.Many2one("machinery.registry", string="Maquinaria")
+    machinery_inventory = fields.Many2one('machinery.inventory', string="Propietario del equipo")
+    machinery_to_maintenance = fields.Many2one("machinery.registry", string="Equipo")
     tipo_servicio = fields.Many2many('service.machinery', string="Tipo de servicio")
 
 
