@@ -62,7 +62,6 @@
                 </xpath>
             </field>
     </record>
-
       <record id="crm_stage_form_inherit" model="ir.ui.view">
         <field name="name">crm stage inherit</field>
         <field name="model">crm.stage</field>

@@ -29,7 +29,6 @@ class Lead2OpportunityPartner(models.TransientModel):
 #     def _value_pc(self):
 #         for record in self:
 #             record.value2 = float(record.value) / 100
-
 class Lead(models.Model):
     _inherit = "crm.lead"
 
@@ -87,6 +86,52 @@ class Lead(models.Model):
         action['res_id'] = quotations.id
         return action
 
+    def action_new_quotation(self):
+        quotations = self.env['sale.simple.order'].search([
+            ('opportunity_id', '=', self.id)
+        ])
+        if quotations:
+            order_lines = []
+            [order_lines.append(
+                (0, 0, {
+                    'product_id': order.product_id.id,
+                    'product_template_id': order.product_template_id.id,
+                    'name': order.product_id.name,
+                    'product_uom': order.product_id.uom_id.id,
+                    'product_uom_qty': order.product_uom_qty,
+                    'price_unit': order.price_unit,
+                })
+            ) for order in quotations.order_line]
+            action = self.env.ref("sale_crm.sale_action_quotations_new").read()[0]
+            action['context'] = {
+                'search_default_opportunity_id': self.id,
+                'default_opportunity_id': self.id,
+                'search_default_partner_id': self.partner_id.id,
+                'default_partner_id': self.partner_id.id,
+                'default_team_id': self.team_id.id,
+                'default_campaign_id': self.campaign_id.id,
+                'default_medium_id': self.medium_id.id,
+                'default_origin': self.name,
+                'default_source_id': self.source_id.id,
+                'default_company_id': self.company_id.id or self.env.company.id,
+                'default_order_line': order_lines,
+                'default_pricelist_id': quotations.pricelist_id.id,
+            }
+        else:
+            action = self.env.ref("sale_crm.sale_action_quotations_new").read()[0]
+            action['context'] = {
+                'search_default_opportunity_id': self.id,
+                'default_opportunity_id': self.id,
+                'search_default_partner_id': self.partner_id.id,
+                'default_partner_id': self.partner_id.id,
+                'default_team_id': self.team_id.id,
+                'default_campaign_id': self.campaign_id.id,
+                'default_medium_id': self.medium_id.id,
+                'default_origin': self.name,
+                'default_source_id': self.source_id.id,
+                'default_company_id': self.company_id.id or self.env.company.id,
+            }
+        return action
 class Stage(models.Model):
     _inherit = 'crm.stage'
 
