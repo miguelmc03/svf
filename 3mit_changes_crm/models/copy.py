@@ -615,17 +615,25 @@ class SaleSimpleOrder(models.Model):
         return super(SaleSimpleOrder, self).copy_data(default)
 
     def name_get(self):
-        if self._context.get('sale_show_partner_name'):
-            res = []
-            for order in self:
-                name = order.name
-                if order.partner_id.name:
-                    name = '%s - %s' % (name, order.partner_id.name)
-                elif order.parnet_name:
-                    name = '%s - %s' % (name, order.partner_name)
-                res.append((order.id, name))
-            return res
-        return super(SaleSimpleOrder, self).name_get()
+        res = []
+        for cat in self:
+            if len(str(cat.id)) == 1:
+                res.append((cat.id, 'P0000%s' % (cat.id)))
+                cat.name = ('P0000%s' % (cat.id))
+            elif len(str(cat.id)) == 2:
+                res.append((cat.id, 'P000%s' % (cat.id)))
+                cat.name = ('P000%s' % (cat.id))
+            elif len(str(cat.id)) == 3:
+                res.append((cat.id, 'P00%s' % (cat.id)))
+                cat.name = ('P00%s' % (cat.id))
+            elif len(str(cat.id)) == 4:
+                res.append((cat.id, 'P0%s' % (cat.id)))
+                cat.name = ('P0%s' % (cat.id))
+            elif len(str(cat.id)) >= 5:
+                res.append((cat.id, 'P%s' % (cat.id)))
+                cat.name = ('P%s' % (cat.id))
+
+        return res
 
     @api.model
     def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
