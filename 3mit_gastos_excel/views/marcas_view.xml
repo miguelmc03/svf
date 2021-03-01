@@ -1,0 +1,72 @@
+<odoo>
+
+  <data>
+
+     <record id="registro_marcas_form" model="ir.ui.view">
+                <field name="name">registro.marcas.form</field>
+                <field name="model">marcas.model</field>
+                <field name="arch" type="xml">
+                    <form string="Registro de marcas">
+                        <sheet>
+                            <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nombre de la marca" required="True"/>
+                            </h1>
+                            </div>
+                            <group string="Información" col="4">
+                                <field name="account_id" />
+                                <field name="account_ingresos_id" />
+                                <field name="company_id" />
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+        <record model="ir.rule" id="record_not_shared_multi_company_rule_marcas">
+            <field name="name">Non Shared Records:model</field>
+            <field name="model_id" ref="3mit_gastos_excel.model_marcas_model"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+               [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+    <record id="registro_marcas_tree" model="ir.ui.view">
+        <field name="name">registro.marcas.tree</field>
+        <field name="model">marcas.model</field>
+        <field name="arch" type="xml">
+            <tree string="Información" default_order="id desc">
+                <field name="name" string="Nombre" />
+                <field name="account_id" string='Cuenta Gasto' />
+                <field name="account_ingresos_id" string='Cuenta ingresos diferidos'/>
+                <field name="company_id" string="Compañia" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="act_marcas_form" model="ir.actions.act_window">
+        <field name="name">Registro de marcas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">marcas.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+         id="action_marcas_principal"
+         parent="account.menu_finance_entries"
+         name="Marcas"
+         sequence="50"
+    />
+    <menuitem
+         id="action_marcas_submenu"
+         parent="action_marcas_principal"
+         action="act_marcas_form"
+         name="Registros de marcas"
+         sequence="50"
+    />
+
+
+  </data>
+</odoo>

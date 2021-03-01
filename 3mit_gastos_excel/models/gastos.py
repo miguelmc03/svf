@@ -96,7 +96,12 @@ class GastosCargaExcel(models.TransientModel):
                     limit=1)
                 if not lis[8]:
                     raise UserError('Por favor indique la fecha')
-                date = datetime.strptime(lis[8], '%d/%m/%Y')
+                try:
+                    date = datetime.strptime(lis[8], '%d/%m/%Y')
+                except:
+                    date = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + int(lis[8]) - 2)
+                    date = date.date()
+
                 name = str(employee_id.name) + ' ' + product_id.name
                 if not lis[9] or not lis[10]:
                     raise UserError('Indique tooso los precios unitarios y totales')
