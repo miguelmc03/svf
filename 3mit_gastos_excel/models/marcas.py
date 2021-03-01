@@ -25,22 +25,25 @@ class Marcas(models.Model):
     company_id = fields.Many2one('res.company', string='Compañia', required=True, readonly=True,
                                  default=lambda self: self.env.company)
     account_id = fields.Many2one('account.account', string='Cuenta Gasto', domain="[('internal_type', '=', 'other'), ('company_id', '=', company_id)]", help="An expense account is expected", required=True)
-    account_ingresos_id = fields.Many2one('account.account', string='Cuenta Ingresos',
+    account_ingresos_id = fields.Many2one('account.account', string='Cuenta ingresos diferidos',
                                  domain="[('internal_type', '=', 'other'), ('company_id', '=', company_id)]",
                                  help="An expense account is expected")
 class HerenciaProyecto(models.Model):
     _inherit = "project.project"
     
-    marca_id = fields.Many2one('marcas.model')
+    marca_id = fields.Many2one('marcas.model', required=True)
 
     @api.model
     def create(self, vals):
         res = super(HerenciaProyecto, self).create(vals)
         if res.sale_order_id and res.sale_order_id.marca_id:
             res.marca_id = res.sale_order_id.marca_id
+        if res.sale_order_id and res.sale_order_id.analytic_group_id:
+            res.analytic_account_id.group_id = res.sale_order_id.analytic_group_id
         return res
 
 class herenciaventas(models.Model):
     _inherit = "sale.order"
 
     marca_id = fields.Many2one('marcas.model')
+    analytic_group_id = fields.Many2one('account.analytic.group', 'Grupo analítico')

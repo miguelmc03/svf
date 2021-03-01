@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'wizard/wizard_excel.xml',
         'views/marcas_herencias.xml',
+        'views/marcas_view.xml',
     ],
     'demo': [
     ],
