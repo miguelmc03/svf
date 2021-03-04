@@ -1,0 +1,109 @@
+<odoo>
+  <data>
+      <record id="project_kanban_inherited_changes" model="ir.ui.view">
+        <field name="name">project.kanban.inherited.changes</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="priority">26</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_primary')]" position="after">
+                <div>
+                    <span class="o_label">Estado:</span>
+                    <field name="state" widget="kanban_state_selection"/>
+                </div>
+            </xpath>
+        </field>
+        </record>
+    <record id="edit_project_inherit" model="ir.ui.view">
+        <field name="name">edit project inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <button name="156" position="after">
+                <button name="action_close" type="object" string="Cerrar Proyecto" class="oe_highlight" attrs="{'invisible':[('state', 'in', 'blocked')]}"/>
+                <button name="set_to_done" type="object" string="Reabrir Proyecto" class="oe_highlight" attrs="{'invisible':[('state', 'in', 'done')]}"/>
+                <field name="state" widget="statusbar" statusbar_visible="done,blocked"></field>
+            </button>
+             <button name="action_make_billable" position="attributes">
+                     <attribute name="attrs">{'invisible': ['|', ('billable_type', '!=', 'no'), ('state', '=', 'blocked')]}</attribute>
+             </button>
+        </field>
+     </record>
+<!--       <record id="view_order_form_inherit_project_changes" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.form.project.changes</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--          <xpath expr="//field[@name='project_id']" position="attributes">-->
+<!--              <attribute name="domain">[('state', '=', 'done')]</attribute>-->
+<!--          </xpath>-->
+<!--        </field>-->
+<!--     </record>-->
+      <record id="timesheet_plan_inherit" model="ir.ui.view">
+        <field name="name">Timesheet Plan inherit</field>
+        <field name="model">project.create.sale.order</field>
+        <field name="inherit_id" ref="sale_timesheet.project_create_sale_order_view_form"/>
+        <field name="arch" type="xml">
+            <button name="action_create_sale_order" position="after">
+                <field name="state" invisible="1"></field>
+            </button>
+            <button name="action_create_sale_order" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'in', 'blocked')]}</attribute>
+            </button>
+        </field>
+        </record>
+      <record id="view_product_timesheet_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.timesheet.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="sale.product_template_form_view_invoice_policy"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="attributes">
+                <attribute name="domain">[('state', '=', 'done')]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='project_template_id']" position="attributes">
+                <attribute name="domain">[('state', '=', 'done')]</attribute>
+            </xpath>
+        </field>
+      </record>
+      <record id="view_account_analytic_line_form_inherit" model="ir.ui.view">
+            <field name="name">account.analytic.line.form.inherit</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_line_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//field[@name='account_id']" position="attributes">
+                        <attribute name="domain">[('state', '=', 'done')]</attribute>
+                    </xpath>
+            </field>
+        </record>
+      <record id="view_account_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//page[@id='invoice_tab']//field//tree//field[@name='analytic_account_id']" position="attributes">
+                        <attribute name="domain">[('state', '=', 'done'), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]</attribute>
+                    </xpath>
+            </field>
+        </record>
+        <record id="hr_timesheet_line_form_inherit" model="ir.ui.view">
+            <field name="name">account.analytic.line.form.inherit.hr</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+            <field name="arch" type="xml">
+                <field name="project_id" position="attributes">
+                    <attribute name="domain">[('state', '=', 'done')]</attribute>
+                </field>
+            </field>
+        </record>
+        <record id="hr_expense_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.expense.view.form.inherit</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+            <field name="arch" type="xml">
+                <field name="analytic_account_id" position="attributes">
+                    <attribute name="domain">[('state', '=', 'done'), '|', ('company_id', '=', company_id), ('company_id', '=', False)]</attribute>
+                </field>
+            </field>
+        </record>
+  </data>
+</odoo>
