@@ -55,6 +55,9 @@ class herenciacompras(models.Model):
     def _compute_marca_id(self):
         marca_id = self.env['marcas.model'].search([('name', '=', 'N/A')])
         if not marca_id:
+            marca_id = self.env['marcas.model'].search([])
+            if not marca_id:
+                return
             raise UserError('Por favor configure la marca de nombre "N/A"')
         return marca_id
 
