@@ -69,6 +69,17 @@
             </field>
         </record>
 
+        <record id="purchase_order_inherit_marca" model="ir.ui.view">
+            <field name="name">purchase.order.inherit.marca</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="marca_id" string="Marca" attrs="{'readonly': [('state', '!=', 'draft')]}" required="True"/>
+                </xpath>
+            </field>
+        </record>
+
 
     </data>
 </odoo>

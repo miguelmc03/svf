@@ -8,7 +8,7 @@
     'category': 'Tools',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr_expense', 'sale'],
+    'depends': ['base', 'hr_expense', 'sale','purchase'],
 
     # always loaded
     'data': [
