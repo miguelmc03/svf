@@ -47,3 +47,38 @@ class herenciaventas(models.Model):
 
     marca_id = fields.Many2one('marcas.model')
     analytic_group_id = fields.Many2one('account.analytic.group', 'Grupo analítico')
+
+class herenciacompras(models.Model):
+    _inherit = "purchase.order"
+
+    @api.model
+    def _compute_marca_id(self):
+        marca_id = self.env['marcas.model'].search([('name', '=', 'N/A')])
+        if not marca_id:
+            raise UserError('Por favor configure la marca de nombre "N/A"')
+        return marca_id
+
+    marca_id = fields.Many2one('marcas.model', default=_compute_marca_id)
+
+class HerenciaInvoice(models.Model):
+    _inherit = "account.move"
+
+    def action_post(self):
+        self.check_apunte()
+        var = super(HerenciaInvoice, self).action_post()
+        return var
+
+    @api.onchange('invoice_line_ids')
+    def _onchange_invoice_line_ids(self):
+        res =  super(HerenciaInvoice, self)._onchange_invoice_line_ids()
+        self.check_apunte()
+        return res
+
+    def check_apunte(self):
+        sale_order_id = self.env['purchase.order'].search([('name', '=', self.invoice_origin), ('company_id', '=', self.company_id.id)])
+        if sale_order_id and sale_order_id.marca_id.name != 'N/A':
+            for lin in self.invoice_line_ids:
+                lin.account_id = sale_order_id.marca_id.account_id
+        return
+
+
