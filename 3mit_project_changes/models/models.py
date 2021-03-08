@@ -50,12 +50,11 @@ class TaskInherit(models.Model):
 
     @api.model
     def create(self, vals):
-        project = self.env['project.project'].browse(self._context['active_id'])
-        if project.state == 'blocked':
-            raise Warning(_('No se pueden crear tareas en estado cerrado'))
-        else:
-            res = super(TaskInherit, self).create(vals)
-            return res
+        res = super(TaskInherit, self).create(vals)
+        if res.project_id:
+            if res.project_id.state == 'blocked':
+                raise Warning(_('No se pueden crear tareas en estado cerrado'))
+        return res
 
 class ProjectCreateSalesOrder(models.TransientModel):
     _inherit = 'project.create.sale.order'
