@@ -5,11 +5,11 @@ from odoo.tests import Form, tagged
 class CompanyEdit(models.Model):
     _inherit = "res.company"
     inter_automatic = fields.Boolean(default=False)
+    usuarios_correo = fields.Many2many('res.users', string="Enviar Correo", index=1)
     
 class purchase_order(models.Model):
     _inherit = "purchase.order"
     state_auto = fields.Boolean(default=False)
-
 
 
     @api.model
@@ -61,7 +61,22 @@ class stock_edit(models.Model):
             vb = Form(request.env['account.move'].with_context(action['context']))
             vb = vb.save()
             vb.post()
+            vb.enviar_correos_automatico()
             #crear la factura y procesar de venta
             action = orden_venta._create_invoices()
             action.post()
         return res
+
+class AccountEmail(models.Model):
+    _inherit = "account.move"
+    email_to = fields.Char()
+    name_usuario = fields.Char()
+    def enviar_correos_automatico(self):
+        template = self.env.ref('3mit_intercompany.template_account_email', False)
+        for move in self:
+            if move.company_id.usuarios_correo:
+                for sent in move.company_id.usuarios_correo:
+                    move.email_to = sent.login
+                    move.name_usuario = sent.name
+                    template.send_mail(move.id, force_send=True)
+        return True
