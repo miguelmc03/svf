@@ -48,7 +48,7 @@ class CoreProduct(models.Model):
             team = self.env['quality.alert.team'].search([('es_core', '=', 'si')])
             if not team:
                 raise Warning(_('Por favor configure un equipo para core en el módulo de cálidad'))
-            quality = self.env['quality.point.test_type'].search([('name', '=', 'Measure')])
+            quality = self.env['quality.point.test_type'].search([('name', '=', 'Text')])
             company_id = self.env['res.company'].search([('id', '=', '5')])
             vals = {
                 'title': vals_list.get('name'),
@@ -58,10 +58,6 @@ class CoreProduct(models.Model):
                 'company_id': company_id.id,
                 'measure_frequency_type': 'all',
                 'test_type_id': quality.id,
-                'norm': 1000,
-                'norm_unit': 'MX',
-                'tolerance_min': 1,
-                'tolerance_max': 1000,
                 'team_id': team.id,
 
             }

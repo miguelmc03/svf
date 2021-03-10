@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.http import request
+from datetime import date
+from odoo.exceptions import Warning
+
+class SettingUpCore(models.Model):
+    _name = "core.settings"
+
+    name = fields.Char()
+    account = fields.Many2one('account.account', 'Cuenta')
 
 class PickingTypeInherit(models.Model):
     _inherit = "stock.picking.type"
@@ -29,7 +37,7 @@ class PickingInherit(models.Model):
                 self.refund_flag = False
 
     def write(self, vals):
-        if self.picking_type_id.es_core:
+        if self.picking_type_id.es_core == 'si':
             if not vals.get('refund_flag', False):
                 vals.update({'refund_flag': True})
         if not self.valoracion_ids:
@@ -47,11 +55,6 @@ class PickingInherit(models.Model):
         res = super(PickingInherit, self).write(vals)
         return res
 
-    @api.model
-    def create(self, vals):
-
-        res = super(PickingInherit, self).create(vals)
-        return res
 
     @api.onchange('associated_stock_id')
     def reload_lines_and_valoration(self):
@@ -76,7 +79,9 @@ class PickingInherit(models.Model):
         company_id = self.env['res.company'].search([('id', '=', 1)])
         account_debit_id = self.env['core.settings'].search([('name', '=', 'cxc_mtu')]).account.id
         account_credit_id = self.env['core.settings'].search([('name', '=', 'cxp_ops')]).account.id
-        journal_id = request.env['account.journal'].search([('code', '=', 'MISC'), ('company_id', '=', company_id.id)])
+        journal_id = request.env['account.journal'].search([('devolucion_core', '=', 'si'), ('company_id', '=', company_id.id)])
+        if not journal_id:
+            raise Warning(_('Valla a los Diarios de la NV y seleccione el diario de devolución correspondiente'))
         monto = 0
         for line in self.valoracion_ids:
             monto = monto + line.amount
@@ -113,6 +118,19 @@ class PickingInherit(models.Model):
         move_line_id2 = move_line_obj.create(asiento)
         move_id.action_post()
 
+    def action_confirm(self):
+        res = super(PickingInherit, self).action_confirm()
+        if self.refund_flag:
+            increase = []
+            [increase.append(
+                (0, 0, {
+                    'product_id': product.product_id.id,
+                    'amount': product.product_id.standard_price,
+                })
+            ) for product in self.move_ids_without_package]
+            self.write({'valoracion_ids': increase})
+        return res
+
     # @api.onchange('move_ids_without_package')
     # def update_valoration_items(self):
     #     if self.move_ids_without_package:
@@ -139,19 +157,19 @@ class QualityCheckInherit(models.Model):
 
     def do_measure(self):
         res = super(QualityCheckInherit, self).do_measure()
-        if not self.picking_id.valoracion_ids:
-            increase = []
-            for product_line in self.picking_id:
-                [increase.append(
-                    (0, 0, {
-                        'product_id': product.product_id.id,
-                        'amount': 0,
-                           })
-                  ) for product in product_line.move_ids_without_package]
-            self.picking_id.write({'valoracion_ids': increase})
-        for line in self.picking_id.valoracion_ids:
-            if line.product_id == self.product_id:
-                line.amount = self.measure
+        # if not self.picking_id.valoracion_ids:
+        #     increase = []
+        #     for product_line in self.picking_id:
+        #         [increase.append(
+        #             (0, 0, {
+        #                 'product_id': product.product_id.id,
+        #                 'amount': 0,
+        #                    })
+        #           ) for product in product_line.move_ids_without_package]
+        #     self.picking_id.write({'valoracion_ids': increase})
+        # for line in self.picking_id.valoracion_ids:
+        #     if line.product_id == self.product_id:
+        #         line.amount = self.measure
 
 class StockMoveInherit(models.Model):
     _inherit = "stock.move"
@@ -271,43 +289,41 @@ class AccountMoveReversalInherit(models.TransientModel):
         res = super(AccountMoveReversalInherit, self).reverse_moves()
         return res
 
-class SettingUpCore(models.Model):
-    _name = "core.settings"
-
-
-    name = fields.Char()
-    account = fields.Many2one('account.account', 'Cuenta')
-
 class AccountMoveInherit(models.Model):
     _inherit = "account.move"
 
     is_core = fields.Boolean(default=False)
     es_devolucion = fields.Boolean(default=False)
-    retorno_fabrica = fields.Selection([('si', 'Si'), ('no', 'No')], string="Retorno de Core a Fabrica")
+    # retorno_fabrica = fields.Selection([('si', 'Si'), ('no', 'No')], string="Retorno de Core a Fabrica")
 
     def action_post(self):
         res = super(AccountMoveInherit, self).action_post()
         if self.es_devolucion:
-            self.retorno_fabrica = 'no'
-        #    self.write({'state': 'draft'})
-         #   self.with_context(check_move_validity=False).quitar_llineas()
+            # self.retorno_fabrica = 'no'
             self.automatic_book_entry()
-        if self.retorno_fabrica == 'si':
-            '''self.write({'state': 'draft'})'''
-            #self.with_context(check_move_validity=False).sudo().quitar_llineas_2()
-        if self.is_core and self.invoice_origin:
-            '''self.write({'state': 'draft'})'''
-         #   self.with_context(check_move_validity=False).quitar_llineas()
+        
+        
         return res
 
     def automatic_book_entry(self):
         company_id = self.env['res.company'].search([('id', '=', 1)])
         account_debit_id = self.env['core.settings'].search([('name', '=', 'cxc_mtu')]).account.id
         account_credit_id = self.env['core.settings'].search([('name', '=', 'cxp_ops')]).account.id
-        journal_id = request.env['account.journal'].search([('code', '=', 'MISC'), ('company_id', '=', company_id.id)])
+        journal_id = request.env['account.journal'].search(
+            [('devolucion_core', '=', 'si'), ('company_id', '=', company_id.id)])
+        if not journal_id:
+            raise Warning(_('Valla a los Diarios de la NV y seleccione el diario de devolución correspondiente'))
         monto = 0
         for line in self.invoice_line_ids:
             monto = monto + line.price_subtotal
+        if self.currency_id.id == self.env.company.currency_id.id:
+            currency_rate = self.env['res.currency.rate'].search([
+                ('currency_id', '=', self.env.company.currency_id.id),
+                ('name', '=', date.today()),
+            ]).rate
+            if not currency_rate:
+                raise Warning(_('Ingrese una tasa para la fecha de hoy en el sistema'))
+            monto = monto / currency_rate
         vals = {
             # 'name': name,
             'date': self.date,
@@ -362,26 +378,7 @@ class AccountMoveInherit(models.Model):
             count = count - 1
         self.write({'state': 'posted'})
 
-        # def quitar_llineas(self):
-        #     count = 0
-        #     flag = False
-        #     value = 0
-        #     for line in self.line_ids:
-        #         if flag:
-        #             count += 1
-        #             value += line.debit
-        #             value -= line.credit
-        #         if line.credit:
-        #             flag = True
-        #     for line in self.line_ids:
-        #         if line.credit and flag:
-        #             line.credit = line.credit - value
-        #             flag = False
-        #     updated_move_line_ids = [line.id for line in self.line_ids]
-        #     while count > 0:
-        #         self.line_ids = [(2, updated_move_line_ids[len(updated_move_line_ids) - count])]
-        #         count = count - 1
-        #     self.write({'state': 'posted'})
+
 
     def quitar_llineas_2(self):
         count = 0
@@ -426,57 +423,82 @@ class AccountMoveInherit(models.Model):
             if move_vals['type'] not in ('out_refund', 'in_refund'):
                 return mapping
             if self.es_devolucion:
-                self.retorno_fabrica = 'no'
-                account_debit = self.env['core.settings'].search([('name', '=', 'cxp_nv')]).account.id
+                change = []
+                # self.retorno_fabrica = 'no'
+                move_vals.update({
+                            'type': 'in_refund',
+                        })
                 account_credit = self.env['core.settings'].search([('name', '=', 'ingreso_core')]).account.id
+                account_debit = self.env['core.settings'].search([('name', '=', 'cxp_nv')]).account.id
                 for line_command in move_vals.get('line_ids', []):
                     line_vals = line_command[2]
                     if line_vals.get('debit'):
+                        change.append(line_vals.get('debit'))
                         line_vals.update({
                             'account_id': account_credit,
                         })
+                        change.append(line_vals.get('account_id'))
+                        change.append(0)
                     if line_vals.get('credit'):
+                        change.append(line_vals.get('credit'))
                         line_vals.update({
                             'account_id': account_debit,
                         })
-
+                        change.append(line_vals.get('account_id'))
+                        change.append(1)
+                i = len(change)-1
+                for line_command in move_vals.get('line_ids', []):
+                    line_vals = line_command[2]
+                    if change[i] == 1:
+                        line_vals.update({
+                            'account_id': change[i-1],
+                            'credit': change[i-2],
+                            'debit': 0,
+                        })
+                    elif change[i] == 0:
+                        line_vals.update({
+                            'account_id': change[i-1],
+                            'debit': change[i-2],
+                            'credit': 0,
+                        })
+                    i = i-3
             if self.is_core:
-                diff= 0
-                num = 0
-                count = 0
-                flag = 0
-                value = 0
+                # diff= 0
+                # num = 0
+                # count = 0
+                # flag = 0
+                # value = 0
                 for line_command in move_vals.get('line_ids', []):
                     line_vals = line_command[2]  # (0, 0, {...})
                     product = self.env['product.product'].search([('id', '=', line_vals.get('product_id'))])
                     id=product.product_tmpl_id.id
                     product = self.env['product.template'].search([('id', '=', id )])
                     account = product.categ_id.property_account_income_categ_id.id
-                    stock = self.env['stock.picking'].search([('invoice_id', '=', self.id)], order='date desc', limit=1)
-                    if flag:
-                        count += 1
-                        value = value + line_vals.get('credit')
-                    for line in stock.valoracion_ids:
-                        if num == 1:
-                            if line_vals.get('debit'):
-                                line_vals.update({
-                                    'debit': line_vals.get('debit')-diff,
-                                })
-                                num = 0
-                                flag = 1
+                    # stock = self.env['stock.picking'].search([('invoice_id', '=', self.id)], order='date desc', limit=1)
+                    # if flag:
+                    #     count += 1
+                        # value = value + line_vals.get('credit')
+                    # for line in stock.valoracion_ids:
+                    #     if num == 1:
+                    #         if line_vals.get('debit'):
+                    #             line_vals.update({
+                    #                 'debit': line_vals.get('debit')-diff,
+                    #             })
+                    #             num = 0
+                    #             flag = 1
                     if line_vals.get('account_id') == account:
                         account_id= self.env['core.settings'].search([('name', '=', 'Nota_Credito')]).account.id
                         line_vals.update({
                             'account_id': account_id,
                         })
 
-                        for line in stock.valoracion_ids:
-                            if line.product_id.id == line_vals.get('product_id'):
-                                diff = diff + (line_vals.get('credit')-line.amount)
-                                line_vals.update({
-                                    'credit': line.amount,
-                                })
-                                num = 1
+                        # for line in stock.valoracion_ids:
+                        #     if line.product_id.id == line_vals.get('product_id'):
+                        #         diff = diff + (line_vals.get('credit')-line.amount)
+                        #         line_vals.update({
+                        #             'credit': line.amount,
+                        #         })
+                        #         num = 1
 
             for line_command in move_vals.get('line_ids', []):
                 line_vals = line_command[2]  # (0, 0, {...})
@@ -559,7 +581,7 @@ class SaleOrderSecondInherit(models.Model):
 
     @api.onchange('associated_stock_id')
     def update_values(self):
-        if self.order_line:
+        if self.order_line and self.refund_core == 'si':
             count = 0
             for line in self.order_line:
                 count +=1
@@ -577,10 +599,12 @@ class SaleOrderSecondInherit(models.Model):
                         new_line = self.write({'order_line':
                                                    [(0, 0, {'product_id': order.product_id.id,
                                                             'name': order.product_id.name,
-                                                            'product_uom': order.product_id.uom_id.id})]})
-                    for a in line.valoracion_ids:
-                        self.order_line[count]['price_unit'] = a.amount
-                        count += 1
+                                                            'product_uom': order.product_id.uom_id.id,
+                                                            'product_uom_qty': order.product_uom_qty})]})
+                        self.order_line[len(self.order_line)-1].product_id_change()
+                    # for a in line.valoracion_ids:
+                    #     self.order_line[count]['price_unit'] = a.amount
+                    #     count += 1
 
     def action_confirm(self):
         res = super(SaleOrderSecondInherit, self).action_confirm()
@@ -594,10 +618,21 @@ class SaleOrderSecondInherit(models.Model):
         company_id = self.env['res.company'].search([('id', '=', 1)])
         account_debit_id = self.env['core.settings'].search([('name', '=', 'cxc_mtu')]).account.id
         account_credit_id = self.env['core.settings'].search([('name', '=', 'cxp_ops')]).account.id
-        journal_id = request.env['account.journal'].search([('code', '=', 'MISC'), ('company_id', '=', company_id.id)])
+        journal_id = request.env['account.journal'].search(
+            [('devolucion_core', '=', 'si'), ('company_id', '=', company_id.id)])
+        if not journal_id:
+            raise Warning(_('Valla a los Diarios de la NV y seleccione el diario de devolución correspondiente'))
         monto = 0
         for line in self.order_line:
             monto = monto + line.price_subtotal
+        if self.pricelist_id.currency_id.id == self.env.company.currency_id.id:
+            currency_rate = self.env['res.currency.rate'].search([
+                ('currency_id', '=', self.env.company.currency_id.id),
+                ('name', '=', date.today()),
+            ]).rate
+            if not currency_rate:
+                raise Warning(_('Ingrese una tasa para la fecha de hoy en el sistema'))
+            monto = monto / currency_rate
         vals = {
             # 'name': name,
             'date': self.date_order,
@@ -630,4 +665,9 @@ class SaleOrderSecondInherit(models.Model):
 
         move_line_id2 = move_line_obj.create(asiento)
         move_id.action_post()
+
+class JournalInherit(models.Model):
+    _inherit = 'account.journal'
+
+    devolucion_core = fields.Selection([('si', 'Si'), ('no', 'No')], string='Diario devolución Core', default='no')
 

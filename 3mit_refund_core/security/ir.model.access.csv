@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_3mit_devolution_core_valoracion_line,3mit_devolution_core.valoracion_line,model_valoracion_line,base.group_user,1,1,1,1
-access_3mit_devolution_core_settings,3mit_devolution_core.core_settings,model_core_settings,base.group_user,1,1,1,1
+access_3mit_devolution_core_settings,3mit_devolution_core.core_settings,model_core_settings,,1,1,1,1
