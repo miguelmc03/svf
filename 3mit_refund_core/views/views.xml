@@ -14,6 +14,7 @@
         </field>
       </record>
 
+
       <record id="stock_picking_inherit_two" model="ir.ui.view">
         <field name="name">stock_picking_2_inherit</field>
         <field name="model">stock.picking</field>

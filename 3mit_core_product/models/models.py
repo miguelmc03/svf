@@ -17,6 +17,7 @@ class CoreProduct(models.Model):
         else:
             self.check_core = False
 
+
     @api.model
     def create(self, vals_list):
         if vals_list.get('checking_core') == 'si':

@@ -19,6 +19,7 @@ class PickingTypeInherit(models.Model):
     account_credit_id = fields.Many2one('account.account', 'Cuenta a Acreditar')
     journal_advanced_id = fields.Many2one('account.journal', 'Diario de Anticipos')
 
+
 class PickingInherit(models.Model):
     _inherit = "stock.picking"
     refund_flag = fields.Boolean()
