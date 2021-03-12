@@ -12,7 +12,6 @@
       </field>
     </record>
 
-
     <record id="quality_alert_team_inherit" model="ir.ui.view">
       <field name="name">quality.team.inherit</field>
       <field name="model">quality.alert.team</field>

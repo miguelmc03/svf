@@ -14,7 +14,6 @@
         </field>
       </record>
 
-
       <record id="stock_picking_inherit_two" model="ir.ui.view">
         <field name="name">stock_picking_2_inherit</field>
         <field name="model">stock.picking</field>
@@ -52,7 +51,7 @@
         <field name="arch" type="xml">
             <field name="journal_id" position='after'>
                 <field name="is_core" string="Nota de Crédito para Core" />
-                <field name="es_devolucion" string="Nota de Débito para Core" />
+                <field name="es_devolucion" string="Retorno de Core a Fabrica" />
           </field>
         </field>
       </record>

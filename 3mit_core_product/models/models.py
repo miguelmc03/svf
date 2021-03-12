@@ -17,7 +17,6 @@ class CoreProduct(models.Model):
         else:
             self.check_core = False
 
-
     @api.model
     def create(self, vals_list):
         if vals_list.get('checking_core') == 'si':
@@ -229,28 +228,32 @@ class PurchaseOrderInherit(models.Model):
         return super(PurchaseOrderInherit, self).print_quotation()
 
     def button_confirm(self):
-        number_variants = 1
-        last_product_id = None
-        quantity = 0
-        if self.order_line:
-            for line in self.order_line:
-                if number_variants == 1:
-                    product = line.product_id
-                    if product.checking_core == 'si':
-                        number_variants = product.product_variant_count
-                        last_product_id = product
-                        quantity = line.product_uom_qty
-                else:
-                    number_variants = number_variants - 1
-                    if not last_product_id in line.product_id.product_variant_ids:
-                        raise Warning(_('Falta el core del producto'))
-                    if line.product_uom_qty != quantity:
-                        raise Warning(_('La cantidad de los cores no es igual a la del producto'))
-            if number_variants != 1:
-                raise Warning(_('Falta el Core del producto'))
-        return super(PurchaseOrderInherit, self).button_confirm()
+        if self.auto_sale_order_id.refund_core == 'si':
+            return super(PurchaseOrderInherit, self).button_confirm()
+        else:
+            number_variants = 1
+            last_product_id = None
+            quantity = 0
+            if self.order_line:
+                for line in self.order_line:
+                    if number_variants == 1:
+                        product = line.product_id
+                        if product.checking_core == 'si':
+                            number_variants = product.product_variant_count
+                            last_product_id = product
+                            quantity = line.product_uom_qty
+                    else:
+                        number_variants = number_variants - 1
+                        if not last_product_id in line.product_id.product_variant_ids:
+                            raise Warning(_('Falta el core del producto'))
+                        if line.product_uom_qty != quantity:
+                            raise Warning(_('La cantidad de los cores no es igual a la del producto'))
+                if number_variants != 1:
+                    raise Warning(_('Falta el Core del producto'))
+            return super(PurchaseOrderInherit, self).button_confirm()
 
 class QualityAlertTeamInherit(models.Model):
     _inherit ='quality.alert.team'
 
     es_core = fields.Selection([('si', 'Si'), ('no', 'No')], required=True)
+

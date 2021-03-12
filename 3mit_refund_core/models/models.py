@@ -3,7 +3,7 @@
 from odoo import models, fields, api, _
 from odoo.http import request
 from datetime import date
-from odoo.exceptions import Warning
+from odoo.exceptions import RedirectWarning, UserError, ValidationError, AccessError, Warning
 
 class SettingUpCore(models.Model):
     _name = "core.settings"
@@ -18,7 +18,6 @@ class PickingTypeInherit(models.Model):
     account_debit_id = fields.Many2one('account.account', 'Cuenta a Debitar')
     account_credit_id = fields.Many2one('account.account', 'Cuenta a Acreditar')
     journal_advanced_id = fields.Many2one('account.journal', 'Diario de Anticipos')
-
 
 class PickingInherit(models.Model):
     _inherit = "stock.picking"
@@ -358,49 +357,6 @@ class AccountMoveInherit(models.Model):
         move_line_id2 = move_line_obj.create(asiento)
         move_id.action_post()
 
-    def quitar_llineas(self):
-        count = 0
-        flag = False
-        value = 0
-        for line in self.line_ids:
-            if flag:
-                count += 1
-                value += line.debit
-                value -= line.credit
-            if line.credit:
-                flag = True
-        for line in self.line_ids:
-            if line.credit and flag:
-                line.credit = line.credit - value
-                flag = False
-        updated_move_line_ids = [line.id for line in self.line_ids]
-        while count > 0:
-            self.line_ids = [(2, updated_move_line_ids[len(updated_move_line_ids) - count])]
-            count = count - 1
-        self.write({'state': 'posted'})
-
-
-
-    def quitar_llineas_2(self):
-        count = 0
-        flag = False
-        value = 0
-        for line in self.line_ids:
-            if flag:
-                count += 1
-                value += line.credit
-                value -= line.debit
-            if line.debit:
-                flag = True
-        for line in self.line_ids:
-            if line.debit and flag:
-                line.debit = line.debit - value
-                flag = False
-        updated_move_line_ids = [line.id for line in self.line_ids]
-        while count > 0:
-            self.line_ids = [(2, updated_move_line_ids[len(updated_move_line_ids) - count])]
-            count = count - 1
-        self.write({'state': 'posted'})
 
     def _reverse_move_vals(self, default_values, cancel=True):
         ''' Reverse values passed as parameter being the copied values of the original journal entry.
@@ -425,6 +381,7 @@ class AccountMoveInherit(models.Model):
                 return mapping
             if self.es_devolucion:
                 change = []
+                importe = []
                 # self.retorno_fabrica = 'no'
                 move_vals.update({
                             'type': 'in_refund',
@@ -434,35 +391,63 @@ class AccountMoveInherit(models.Model):
                 for line_command in move_vals.get('line_ids', []):
                     line_vals = line_command[2]
                     if line_vals.get('debit'):
-                        change.append(line_vals.get('debit'))
-                        line_vals.update({
-                            'account_id': account_credit,
-                        })
-                        change.append(line_vals.get('account_id'))
-                        change.append(0)
-                    if line_vals.get('credit'):
-                        change.append(line_vals.get('credit'))
+                #         change.append(line_vals.get('price_subtotal'))
+                #         change.append(line_vals.get('price_total'))
+                #         change.append(line_vals.get('debit'))
                         line_vals.update({
                             'account_id': account_debit,
+                            'amount_currency': -line_vals.get('amount_currency'),
                         })
-                        change.append(line_vals.get('account_id'))
-                        change.append(1)
-                i = len(change)-1
-                for line_command in move_vals.get('line_ids', []):
-                    line_vals = line_command[2]
-                    if change[i] == 1:
+                #         change.append(line_vals.get('price_unit'))
+                #         change.append(line_vals.get('account_id'))
+                #         if line_vals.get('amount_currency'):
+                #             importe.append(line_vals.get('amount_currency'))
+                #         change.append(0)
+                    if line_vals.get('credit'):
+                #         change.append(line_vals.get('price_subtotal'))
+                #         change.append(line_vals.get('price_total'))
+                #         change.append(line_vals.get('credit'))
                         line_vals.update({
-                            'account_id': change[i-1],
-                            'credit': change[i-2],
-                            'debit': 0,
+                            'account_id': account_credit,
+                            'amount_currency': -line_vals.get('amount_currency'),
                         })
-                    elif change[i] == 0:
-                        line_vals.update({
-                            'account_id': change[i-1],
-                            'debit': change[i-2],
-                            'credit': 0,
-                        })
-                    i = i-3
+                #         change.append(line_vals.get('price_unit'))
+                #         change.append(line_vals.get('account_id'))
+                #         if line_vals.get('amount_currency'):
+                #             importe.append(line_vals.get('amount_currency'))
+                #         change.append(1)
+                # j = len(importe)-1
+                # i = len(change)-1
+                # for line_command in move_vals.get('line_ids', []):
+                #     line_vals = line_command[2]
+                #     if change[i] == 1:
+                #         line_vals.update({
+                #             'account_id': change[i-1],
+                #             'price_unit': change[i-2],
+                #             'credit': change[i-3],
+                #             'price_total': change[i - 4],
+                #             'price_subtotal': change[i - 5],
+                #             'debit': 0,
+                #         })
+                #         if j > -1:
+                #             line_vals.update({
+                #                 'amount_currency': importe[j] if importe[j] else 0,
+                #             })
+                #     elif change[i] == 0:
+                #         line_vals.update({
+                #             'account_id': change[i-1],
+                #             'price_unit': change[i - 2],
+                #             'debit': change[i-3],
+                #             'price_total': change[i - 4],
+                #             'price_subtotal': change[i - 5],
+                #             'credit': 0,
+                #         })
+                #         if j > -1:
+                #             line_vals.update({
+                #                 'amount_currency': importe[j] if importe[j] else 0,
+                #             })
+                #     i = i-6
+                #     j = j-1
             if self.is_core:
                 # diff= 0
                 # num = 0
@@ -500,16 +485,15 @@ class AccountMoveInherit(models.Model):
                         #             'credit': line.amount,
                         #         })
                         #         num = 1
-
             for line_command in move_vals.get('line_ids', []):
                 line_vals = line_command[2]  # (0, 0, {...})
 
-                if line_vals.get('tax_ids') and line_vals['tax_ids'][0][2]:
-                    # Base line.
-                    tax_ids = line_vals['tax_ids'][0][2]
-                elif line_vals.get('tax_line_id'):
+                if line_vals.get('tax_line_id'):
                     # Tax line.
                     tax_ids = [line_vals['tax_line_id']]
+                elif line_vals.get('tax_ids') and line_vals['tax_ids'][0][2]:
+                    # Base line.
+                    tax_ids = line_vals['tax_ids'][0][2]
                 else:
                     continue
 
@@ -539,19 +523,11 @@ class AccountMoveInherit(models.Model):
                 continue
 
             # ==== Map tax repartition lines ====
-            if line_vals.get('tax_ids') and line_vals['tax_ids'][0][2]:
-                # Base line.
-                taxes = self.env['account.tax'].browse(line_vals['tax_ids'][0][2]).flatten_taxes_hierarchy()
-                invoice_repartition_lines = taxes\
-                    .mapped('invoice_repartition_line_ids')\
-                    .filtered(lambda line: line.repartition_type == 'base')
-                refund_repartition_lines = invoice_repartition_lines\
-                    .mapped(lambda line: tax_repartition_lines_mapping[line])
-
-                line_vals['tag_ids'] = [(6, 0, refund_repartition_lines.mapped('tag_ids').ids)]
-            elif line_vals.get('tax_repartition_line_id'):
+            if line_vals.get('tax_repartition_line_id'):
                 # Tax line.
                 invoice_repartition_line = self.env['account.tax.repartition.line'].browse(line_vals['tax_repartition_line_id'])
+                if invoice_repartition_line not in tax_repartition_lines_mapping:
+                    raise UserError(_("It seems that the taxes have been modified since the creation of the journal entry. You should create the credit note manually instead."))
                 refund_repartition_line = tax_repartition_lines_mapping[invoice_repartition_line]
 
                 # Find the right account.
@@ -570,6 +546,16 @@ class AccountMoveInherit(models.Model):
                     'account_id': account_id,
                     'tag_ids': [(6, 0, refund_repartition_line.tag_ids.ids)],
                 })
+            elif line_vals.get('tax_ids') and line_vals['tax_ids'][0][2]:
+                # Base line.
+                taxes = self.env['account.tax'].browse(line_vals['tax_ids'][0][2]).flatten_taxes_hierarchy()
+                invoice_repartition_lines = taxes\
+                    .mapped('invoice_repartition_line_ids')\
+                    .filtered(lambda line: line.repartition_type == 'base')
+                refund_repartition_lines = invoice_repartition_lines\
+                    .mapped(lambda line: tax_repartition_lines_mapping[line])
+
+                line_vals['tag_ids'] = [(6, 0, refund_repartition_lines.mapped('tag_ids').ids)]
         return move_vals
 
 class SaleOrderSecondInherit(models.Model):
