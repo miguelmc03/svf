@@ -391,63 +391,65 @@ class AccountMoveInherit(models.Model):
                 for line_command in move_vals.get('line_ids', []):
                     line_vals = line_command[2]
                     if line_vals.get('debit'):
-                #         change.append(line_vals.get('price_subtotal'))
-                #         change.append(line_vals.get('price_total'))
-                #         change.append(line_vals.get('debit'))
+                        change.append(0)
+                        change.append(line_vals.get('price_subtotal'))
+                        change.append(line_vals.get('price_total'))
+                        change.append(line_vals.get('debit'))
                         line_vals.update({
                             'account_id': account_debit,
-                            'amount_currency': -line_vals.get('amount_currency'),
                         })
-                #         change.append(line_vals.get('price_unit'))
-                #         change.append(line_vals.get('account_id'))
-                #         if line_vals.get('amount_currency'):
-                #             importe.append(line_vals.get('amount_currency'))
-                #         change.append(0)
+                        change.append(line_vals.get('price_unit'))
+                        change.append(line_vals.get('account_id'))
+                        # if line_vals.get('amount_currency'):
+                        #     importe.append(line_vals.get('amount_currency'))
+
                     if line_vals.get('credit'):
-                #         change.append(line_vals.get('price_subtotal'))
-                #         change.append(line_vals.get('price_total'))
-                #         change.append(line_vals.get('credit'))
+                        change.append(1)
+                        change.append(line_vals.get('price_subtotal'))
+                        change.append(line_vals.get('price_total'))
+                        change.append(line_vals.get('credit'))
                         line_vals.update({
                             'account_id': account_credit,
-                            'amount_currency': -line_vals.get('amount_currency'),
                         })
-                #         change.append(line_vals.get('price_unit'))
-                #         change.append(line_vals.get('account_id'))
-                #         if line_vals.get('amount_currency'):
-                #             importe.append(line_vals.get('amount_currency'))
-                #         change.append(1)
-                # j = len(importe)-1
-                # i = len(change)-1
-                # for line_command in move_vals.get('line_ids', []):
-                #     line_vals = line_command[2]
-                #     if change[i] == 1:
-                #         line_vals.update({
-                #             'account_id': change[i-1],
-                #             'price_unit': change[i-2],
-                #             'credit': change[i-3],
-                #             'price_total': change[i - 4],
-                #             'price_subtotal': change[i - 5],
-                #             'debit': 0,
-                #         })
-                #         if j > -1:
-                #             line_vals.update({
-                #                 'amount_currency': importe[j] if importe[j] else 0,
-                #             })
-                #     elif change[i] == 0:
-                #         line_vals.update({
-                #             'account_id': change[i-1],
-                #             'price_unit': change[i - 2],
-                #             'debit': change[i-3],
-                #             'price_total': change[i - 4],
-                #             'price_subtotal': change[i - 5],
-                #             'credit': 0,
-                #         })
-                #         if j > -1:
-                #             line_vals.update({
-                #                 'amount_currency': importe[j] if importe[j] else 0,
-                #             })
-                #     i = i-6
-                #     j = j-1
+                        change.append(line_vals.get('price_unit'))
+                        change.append(line_vals.get('account_id'))
+                        # if line_vals.get('amount_currency'):
+                        #     importe.append(line_vals.get('amount_currency'))
+
+                j = len(importe)-1
+                i = 0
+                for line_command in move_vals.get('line_ids', []):
+                    line_vals = line_command[2]
+                    if change[i] == 0:
+                        line_vals.update({
+                            'account_id': change[i+5],
+                            'price_unit': change[i+4],
+                            'credit': change[i+3],
+                            'price_total': change[i +2],
+                            'price_subtotal': change[i +1],
+                            'debit': 0,
+                            'amount_currency':  -line_vals.get('amount_currency'),
+                        })
+                        # if j > -1:
+                        #     line_vals.update({
+                        #         'amount_currency': importe[j] if importe[j] else 0,
+                        #     })
+                    elif change[i] == 1:
+                        line_vals.update({
+                            'account_id': change[i+5],
+                            'price_unit': change[i+4],
+                            'debit': change[i+3],
+                            'price_total': change[i +2],
+                            'price_subtotal': change[i+1],
+                            'credit': 0,
+                            'amount_currency':  -line_vals.get('amount_currency'),
+                        })
+                        # if j > -1:
+                        #     line_vals.update({
+                        #         'amount_currency': importe[j] if importe[j] else 0,
+                        #     })
+                    i = i+6
+                    j = j-1
             if self.is_core:
                 # diff= 0
                 # num = 0
